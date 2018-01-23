@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+
+<script>
+    function isArray( array ){
+        var length = array && array.length;
+        return typeof length === 'number' && length >= 0 ;
+    }
+    function map( array,callback ) {
+        var i,
+            k,
+            tmp,
+            res = [];
+        if ( isArray( array ) ) {
+            for ( i = 0 ; i < array.length ; i++ ) {
+                tmp = callback( array[i] , i );
+                if ( tmp !== undefined ) {
+                    res.push( tmp );
+                }
+            }
+        }else {
+            for ( k in array ) {
+                tmp = callback( array[k] , k );
+                if ( tmp !== undefined ) {
+                    res.push( tmp );
+                }
+            }
+        }
+        return res;
+    }
+
+    var arr = [1,2,3];
+    var array = map(arr,function(v){
+        return v*3;
+    });
+
+
+</script>
+
+</html>

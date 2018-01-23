@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
+    <title>微金所</title>
+    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="lib/html5shiv/html5shiv.min.pcjs"></script>
+    <script src="lib/respond/respond.pcjs"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="css/index.css"/>
+</head>
+<body>
+	<!-- header begin -->
+    <header class="wjs_header hidden-sm hidden-xs">
+    	<div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <a href="#" class="wjs_app">
+                        <span class="wjs_icon wjs_icon_phone"></span>
+                        <span>手机微金所</span>
+                        <span class="glyphicon glyphicon-menu-down"></span>
+                        <img src="images/code.jpg" alt=""/>
+                    </a>
+                </div>
+                <div class="col-lg-5">
+                    <span class="wjs_icon wjs_icon_tel"></span>
+                    <span>4006-89-4006（服务时间：9:00-21:00）</span>
+                </div>
+                <div class="col-md-2">
+                    <a href="#">常见问题</a>
+                    <a href="#" class="m_l10">财富登录</a>
+                </div>
+                <div class="col-md-3">
+                    <a href="#" class="btn btn-register btn-xs">免费注册</a>
+                    <a href="#" class="btn btn-login btn-xs">登录</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header end -->
+    <!-- banner begin -->
+    <div id="carousel-example-generic" class="carousel slide wjs_banner" data-ride="carousel">
+      <!-- 点点 -->
+      <ol class="carousel-indicators"></ol>
+      <!-- 幻灯图片 -->
+      <div class="carousel-inner" role="listbox"></div>
+
+      <!-- 左右按钮 -->
+      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    <!-- banner end -->
+    <!-- 模版 -->
+    <script type="text/template" id="pointHtml">
+        <%_.each(model,function(item,i){%>
+            <li data-target="#carousel-example-generic" data-slide-to="i" class="<%-i==0 ? 'active' : '' %>"></li>
+        <%})%>
+    </script>
+    <script type="text/template" id="itemHtml">
+
+        <%_.each(model.list,function(item,i){%>
+            <div class="item <%-i==0 ? 'active' : '' %>">
+                <%if( model.isMobile ) {%>
+                <img class="hidden-lg hidden-md hidden-sm" src="<%=item.img%>" alt=""/>
+                <%}else{%>
+                <a class="img_box hidden-xs" href="#" style="background-image: url(<%=item.bg%>);" title=""></a>
+                <%}%>
+            </div>
+        <%})%>
+
+    </script>
+	<!-- pcjs 文件位置 -->
+	<script src="lib/jquery/jquery.min.js"></script>
+	<script src="lib/bootstrap/js/bootstrap.js"></script>
+    <script src="lib/underscore/underscore-min.js"></script>
+    <script src="js/index.js"></script>
+
+</body>
+</html>

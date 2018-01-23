@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="lib/vue-2.4.0.js"></script>
+	<script type="text/javascript" src="lib/vue-resource.min.js"></script>
+</head>
+<body>
+<div id="app">
+	<input type="button" value="get请求" id="" @click="getDate">
+	<input type="button" value="post请求" id="" @click="postDate">
+	<input type="button" value="jsonp请求" id="" @click="getDate">
+</div>
+<script type="text/javascript">
+var vm = new Vue({
+	el: '#app',
+	data:{
+		msg: '这是一个get、post、jonp'
+	},
+	methods: {
+		getDate: function(){
+			var url = 'http://vue.studyit.io/api/getlunbo';
+			this.$http.get(url).then(function(data){
+				console.log( data.body );
+			});
+		},
+		postDate: function(){
+			var url = 'http://vue.studyit.io/api/post';
+			this.$http.post( url, {}, { emulateJSON : true } ).then( result => {
+				console.log( result );
+			});
+		},
+		jsonpDate: function(){
+			var url = 'http://vue.studyit.io/api/jsonp';
+			this.$http.jsonp(url).then(function(data){
+				console.log( data.body );
+			});	
+		}
+	}
+});
+</script>
+</body>
+</html>

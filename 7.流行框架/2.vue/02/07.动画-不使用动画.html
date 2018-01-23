@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="lib/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+	<input type="button" value="点击切换动画按钮" name="" @click="flag=!flag">
+
+	<h3 v-if="flag">{{ msg }}</h3>
+</div>
+<script type="text/javascript">
+var vm = new Vue({
+	el: '#app',
+	data: {
+		flag: true,
+		msg: '不使用动画'
+	}
+});
+</script>
+</body>
+</html>

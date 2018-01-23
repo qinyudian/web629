@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    <div class="box">
+        <input type="checkbox" name="" id=""/> 测试数据<br>
+        <input type="checkbox" name="" id=""/> 测试数据<br>
+        <input type="checkbox" name="" id=""/> 测试数据<br>
+        <input type="checkbox" name="" id=""/> 测试数据<br>
+        <input type="checkbox" name="" id=""/> 测试数据<br>
+        <input type="checkbox" name="" id=""/> 测试数据<br>
+        <input type="checkbox" name="" id=""/> 测试数据<br>
+        <input type="checkbox" name="" id=""/> 测试数据<br>
+        <input type="checkbox" name="" id=""/> 测试数据<br>
+        <input type="checkbox" name="" id=""/> 测试数据<br>
+        <input type="checkbox" name="" id=""/> 测试数据<br>
+        <input type="checkbox" name="" id=""/> 测试数据<br>
+        <input type="checkbox" name="" id=""/> 测试数据<br>
+        <input type="checkbox" name="" id=""/> 测试数据<br>
+        <input type="checkbox" name="" id=""/> 测试数据<br>
+        <input type="checkbox" name="" id=""/> 测试数据<br>
+        <input type="checkbox" name="" id=""/> 测试数据<br>
+    </div><br>
+    <div class="box_btn">
+        <button id="selectAll">全选</button>
+        <button id="noselect">全不选</button>
+        <button id="select">反选</button>
+    </div>
+</body>
+<script src="jquery-1.12.2.min.js"></script>
+<script>
+    $(function(){
+        // 全选
+        $('#selectAll').click(function(){
+            $('.box>input').each(function(i,e){
+                this.checked = true;
+            });
+        });
+        // 全不选
+        $('#noselect').click(function(){
+            $('.box>input').each(function(i,e){
+                this.checked = false;
+            });
+        });
+        // 反选
+        $('#select').click(function(){
+            $('.box>input').each(function(i,e){
+                //( this.checked == true ) ? this.checked = false : this.checked = true;
+                this.checked = !this.checked;
+            });
+        });
+    })
+</script>
+</html>

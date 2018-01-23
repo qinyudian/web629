@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+    /*var name = "全局的 name";
+    function method() {
+        console.log( this.name );
+    }
+    var o1 = { name: '张三' };
+    var o2 = { name: '李四' };*/
+
+    //method();
+    //method.apply(o1);
+    //method.call(o2);
+    /*
+    * 只有一个参数的时候apply和call的方法都是一样的*/
+
+
+    /*function method( message,a,b,c,e,f ){
+        console.log( arguments );
+        console.log( message +','+ this.name );
+    }
+    var o1 = { name: '张三' };
+
+    //method.apply(o1,[80,2,3,4,5,6]);
+    method.call(o1,'消息',2,3,5,6,7,8,9);
+*/
+
+
+/*    var arr1 = [ 1,2,3,4 ];
+    var arr2 = [ 5,6,7,8 ];
+    var arr3 = [ 9,10,11 ];
+    //  1.数组中的 concat() 方法
+    var arr4 =  arr1.concat(arr2,arr3);
+//    console.log( arr4 );*/
+
+    //  给伪数组增加元素，合拼数组
+    var warr1 = { length: 0 };
+    var warr2 = { length: 0 };
+    // 方法一
+    /*warr1[0] = 1;
+    warr1.length++;*/
+    // 方法二
+    /*warr2[ warr2.length++ ] = 1;*/
+    // 方法三
+//    [].push.apply( warr1, [ 1,2,3,5,6,4 ] );
+    // 方法四
+    [].push.call( warr1,1,2,3,4,5 );
+    [].push.call( warr2,6,7,8,9,10 );
+    [].push.apply( warr1,warr2 );
+
+
+
+</script>
+</html>

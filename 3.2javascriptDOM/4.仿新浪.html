@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        ul {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .box {
+            width: 600px;
+            margin: 100px auto;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 68px;
+            outline: none;
+            resize: none;
+        }
+
+        ul {
+            width: 450px;
+            padding-left: 80px;
+        }
+
+        ul li {
+            line-height: 25px;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        .title {
+            float: left;
+        }
+
+        .num {
+            float: right;
+        }
+
+        .input {
+            margin-top: 4px;
+            padding: 5px;
+        }
+
+        .func {
+            float: right;
+        }
+
+        #btn {
+            display: inline-block;
+            height: 28px;
+            line-height: 29px;
+            width: 60px;
+            min-width: 40px;
+            font-size: 14px;
+            background-color: #ff8140;
+            color: #fff;
+            box-shadow: none;
+            cursor: default;
+            border: 1px solid #f77c3d;
+            outline: none;
+            padding: 0 10px;
+            border-radius: 2px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        input {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="weibo">
+    <div>
+        <div class="title">有什么新鲜事想告诉大家</div>
+        <div class="num">还可以输入<span>140</span>字</div>
+    </div>
+    <div style="clear: both"></div>
+    <div class="input">
+        <textarea name="" id="txt" cols="20" rows="10"></textarea>
+    </div>
+    <div class="func">
+        <a id="btn">发布</a>
+    </div>
+    <div style="clear: both"></div>
+    <ul id="ul"></ul>
+    <div></div>
+</div>
+<!-- javscript -->
+<script>
+    //需求点击“发布”文本域里的内容插入到ul中
+    //先找人
+    var btn = document.getElementById( 'btn' ); //发布按钮
+    var txt = document.getElementById( 'txt' ); //文本域内容
+    var ul = document.getElementById( 'ul' ); //ul
+    //点击发布按钮事件
+    btn.onclick = function() {
+        var val = txt.value;
+        //3.文本域为空就提示用户，不能发布
+        if( val.trim() == '' ) {
+            alert('请填入内容');
+            return;
+        }
+        var li = document.createElement('li');
+        var span = document.createElement( 'span' );
+        span.innerHTML = val;
+        li.appendChild(span);
+        //1.保证每次发布的内容都显示在最前面
+        var lis = ul.children;  //console.log(lis);
+        if( lis.length === 0 ) {
+            ul.appendChild(li);
+        }else {
+            ul.insertBefore(li,lis[0]);
+        }
+        //2.发布之后清空 val 的值
+        txt.value = '';
+        //4.删除按钮
+        var del = document.createElement('input');
+        del.value = '删除';
+        del.type = 'button';
+        li.appendChild( del );
+        del.onclick = function() {
+            var parent =  this.parentNode ;
+            ul.removeChild(parent);
+        };
+
+    };
+
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

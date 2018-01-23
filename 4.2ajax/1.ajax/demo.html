@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+	<div>
+		查阅书籍：<input type="text" name="code" id="code"><input type="button" value="搜索" id="btn">
+	</div>
+	<div id="box" style="margin-top: 20px; border-top: 1px solid red;"></div>
+
+
+<script type="text/javascript" src="demo.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var box = document.getElementById('box');
+	var code = document.getElementById('code').value;
+	var btn = document.getElementById('btn');
+	btn.onclick = function(){
+		ajax({
+			type : 'post',
+			url : 'demo.php',
+			dataType : 'json',
+			data : {username:'战三',password:'123'},
+			succss : function(data){
+				console.log(data);
+			}
+		});
+	}
+}
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

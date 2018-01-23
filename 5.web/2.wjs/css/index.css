@@ -1,0 +1,173 @@
+@charset "utf-8";
+/*============== 公用的css ===============*/
+html,body {
+	color: #333;
+	/*font-size: 62.5%;*/
+	font-family: "Microsoft YaHei", "sans-serif";
+}
+a {
+	color: #333;
+	text-decoration: none;
+	
+}
+a:hover {
+	color: #333;
+	text-decoration: none;
+}
+/* 自定义字体 申请自定义字体 引入字体文件 指定字体文件的格式 */
+@font-face {
+	font-family : "wjs";
+	src:
+		url(../fonts/MiFie-Web-Font.eot) format('embedded-opentype'),
+		url(../fonts/MiFie-Web-Font.svg) format('svg'),
+		url(../fonts/MiFie-Web-Font.ttf) format('truetype'),
+		url(../fonts/MiFie-Web-Font.woff) format('truetype');
+
+}
+/* 通过伪类来定义一个字体图标 */
+.wjs_icon {
+	font-family: wjs;
+}
+/* 通过伪类来定义字体图标 */
+.wjs_icon_phone::before{
+	content: "\e908";
+}
+.wjs_icon_tel::before{
+	content: "\e909";
+}
+.wjs_icon_logo::before{
+	content: "\e920";
+}
+.wjs_icon_word::before{
+	content: "\e93e";
+}
+.wjs_icon_E903::before{
+	content: "\e903";
+}
+.wjs_icon_E906::before{
+	content: "\e906";
+}
+.wjs_icon_E905::before{
+	content: "\e905";
+}
+.wjs_icon_E907::before{
+	content: "\e907";
+}
+.wjs_icon_E901::before{
+	content: "\e901";
+}
+.wjs_icon_E900::before{
+	content: "\e900";
+}
+.wjs_icon_E904::before{
+	content: "\e904";
+}
+.wjs_icon_E902::before{
+	content: "\e902";
+}
+.wjs_icon_E906::before{
+	content: "\e906";
+}
+.wjs_icon_new01::before{
+	content: "\e90e";
+}
+.wjs_icon_new02::before{
+	content: "\e90f";
+}
+.wjs_icon_new03::before{
+	content: "\e910";
+}
+.wjs_icon_new04::before{
+	content: "\e911";
+}
+.wjs_icon_partner01::before{
+	content:"\e946";
+}
+.wjs_icon_partner02::before{
+	content: "\e92f";
+}
+.wjs_icon_partner03::before{
+	content: "\e92e";
+}
+.wjs_icon_partner04::before{
+	content: "\e92a";
+}
+.wjs_icon_partner05::before{
+	content: "\e929";
+}
+.wjs_icon_partner06::before{
+	content: "\e931";
+}
+.wjs_icon_partner07::before{
+	content: "\e92c";
+}
+.wjs_icon_partner08::before{
+	content: "\e92b";
+}
+.wjs_icon_partner09::before{
+	content: "\e92d";
+}
+
+.m_r10{
+	margin-right: 10px;
+}
+.m_t10{
+	margin-top: 10px;
+}
+.m_l10{
+	margin-left: 10px;
+}
+.m_b10{
+	margin-bottom: 10px;
+}
+
+
+/*============== 页面的css ===============*/
+/* 顶部通栏 */
+.wjs_header {
+	color: #666;
+	font-size: 1.2rem;
+	border-bottom: 1px solid #cccccc;
+}
+.wjs_header a {
+	color: #666;
+}
+.wjs_header .wjs_app {
+	color: #666;
+	position: relative;
+}
+.wjs_header .wjs_app img {
+	display: none;
+	position: absolute;
+	top: 26px;
+	left: 50%;
+	margin-left: -60px;
+	border: 1px solid #cccccc;
+}
+.wjs_header .wjs_app:hover img {
+	display: block;
+}
+.wjs_header > .container > .row > div {
+	height: 40px;
+	line-height: 40px;
+}
+/*.wjs_header > .container > .row > div + div {
+	border-left: 1px solid #cccccc;
+}*/
+.wjs_header .btn-register {
+	color: #fff;
+	padding: 3px 5px;
+	background-color: #E92322;
+}
+
+/* banner begin */
+.wjs_banner {
+
+}
+.img_box {
+	display: block;
+	background-position: center center;
+	height: 410px;
+}
+
+/* banner end */

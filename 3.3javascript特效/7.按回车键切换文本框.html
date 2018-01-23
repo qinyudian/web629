@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<input type="text" name="" id="" /><br/>
+<input type="text" name="" id="" /><br/>
+<input type="text" name="" id="" /><br/>
+<input type="text" name="" id="" /><br/>
+<input type="text" name="" id="" /><br/>
+<input type="text" name="" id="" /><br/>
+<input type="text" name="" id="" /><br/>
+<input type="text" name="" id="" /><br/>
+<input type="text" name="" id="" /><br/>
+<input type="text" name="" id="" /><br/>
+
+
+<script>
+window.onload = function(){
+    var inputs = document.getElementsByTagName('input');
+    for ( var i = 0 ; i < inputs.length ; i++ ){
+        inputs[i].onkeyup = function( event ){
+            var event = eventUtils.getEvent(event);
+            if ( event.keyCode === 13 ) {
+                var next = nexntElementSibling(this);
+                var nextNext = nexntElementSibling(next);
+                //console.log(nextNext);
+                nextNext.focus();
+            }
+        };
+    }
+
+    var eventUtils = {
+        //获取事件对象的兼容函数
+        getEvent: function ( event ){
+            return event || window.event;
+        },
+        //获取鼠标在页面上的水平坐标的兼容方式
+        getPageX: function ( event ){
+            return event.pageX || event.clientX + document.documentElement.scrollLeft;
+        },
+        //获取鼠标在页面上的垂直坐标的兼容方式
+        getPageY: function ( event ){
+            return event.pageY || event.clientY + document.documentElement.scrollTop;
+        },
+        //获取事件目标的函数
+        getTarget: function ( event ){
+            return event.target || event.srcElement;
+        },
+        //阻止冒泡事件函数
+        stopPropagetion: function (event){
+            if ( event.stopPropagation ){
+                return event.stopPropagation();//主流浏览器
+            }else{
+                return event.cancelBubble = true;//ie678
+            }
+        },
+        //兼容所有浏览器的添加事件的函数 element:要绑定事件的元素对象,eventName:是字符串而且不加on,listener:事件处理函数
+        addEvent: function ( element , eventName , listener ){
+            if ( element.addEventListener ) {
+                element.addEventListener( eventName , listener , false ); //主流浏览器
+            } else if( element.attachEvent ) {
+                element.attachEvent( 'on' + eventName , listener );//ie678
+            }else {
+                element[ 'on' + eventName] = listener;//ie5以上
+            }
+        },
+        //兼容所有浏览器的移除事件的函数 element:要绑定事件的元素对象,eventName:是字符串而且不加on,listener:事件处理函数
+        removeEvent: function ( element , eventName , listener ){
+            if( element.removeEventListener ) {
+                element.removeEventListener( eventName , listener , false );
+            }else if ( element.detachEvent ) {
+                element.detachEvent( 'on' + eventName , listener );
+            }else {
+                element[ 'on' + eventName ] = null ;
+            }
+        }
+    };
+    function nexntElementSibling(element) {
+        if ( element.nextElementSibling ) {
+            return element.nextElementSibling;
+        }else {
+            var next = element.nextSibling;
+            while ( next && next.nodeType !== 1 ) {
+                next = next.nextSibling;
+            }
+            return next;
+        }
+    }
+}
+
+</script>
+
+
+
+</body>
+</html>

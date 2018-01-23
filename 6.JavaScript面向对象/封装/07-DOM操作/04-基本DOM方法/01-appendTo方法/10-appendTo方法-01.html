@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script src="js/itcast.core.js"></script>
+<script src="js/itcast.dom.js"></script>
+<script src="js/itcast.ctor.js"></script>
+<script>
+    var arr = [],
+        push = arr.push;
+    Itcast.fn.appendTo = function(dom){
+        dom.appendChild( this[ 0 ] );
+        return this;
+    }
+    
+</script>
+
+<script>
+
+    I('<span>span</span>').append( document.body );
+
+
+
+</script>
+
+
+</html>

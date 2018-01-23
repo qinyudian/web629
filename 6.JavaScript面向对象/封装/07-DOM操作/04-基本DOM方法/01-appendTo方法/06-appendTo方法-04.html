@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * { margin: 0; padding: 0; }
+    div {
+        padding: 10px;
+        border: 1px solid pink;
+        width: 100px;
+        height: 100px;
+        margin: 20px;
+    }
+        p { font-size: 20px; color: red; }
+    </style>
+</head>
+<body>
+<div>1</div>
+<div>2</div>
+<div>3</div>
+<div>4</div>
+<div>5</div>
+</body>
+    <script src="js/itcast.core.js"></script>
+    <script src="js/itcast.dom.js"></script>
+    <script src="js/itcast.ctor-2.js"></script>
+    <script>
+        //
+        Itcast.fn.appendTo = function( selector ) {
+            var iObj = Itcast( selector),
+                len = iObj.length,
+                i;
+            return this.each( function(i,v) {
+                for( i = 0 ; i < len ; i++ ) {
+                    iObj[i].appendChild( i === len-1 ? this : this.cloneNode(true) );
+                }
+            });
+        }
+    </script>
+
+    <script>
+        // 1.加入传入的是一个dom元素
+        var div = I('div').get( 0 );
+        I('<p>1p</p>').appendTo( I('div').get( 0 ) );
+
+        // 2.传入的是一个选择器
+        I('<p>p2</p>').appendTo( 'div' );
+
+        // 3.传入的也是一个 Itcast 对象
+        // 在P标签中加入 span 标签
+        I( '<span style="background-color: mediumvioletred; color: #fff; margin-left: 5px;">span</span>').appendTo( I('p') );
+
+
+
+    </script>
+</html>

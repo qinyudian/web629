@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<input type="button" value="关灯" id="tbn" />
+
+
+<script>
+    var tbn = document.getElementById( 'tbn' );
+    var isOpen = true;
+    tbn.onclick = function () {
+        if ( isOpen ) {
+            document.body.style.backgroundColor = '#000';
+            this.value = '开灯';
+        }else {
+            document.body.style.backgroundColor = '#fff';
+            this.value = '关灯';
+        }
+        isOpen = !isOpen;
+    }
+
+
+
+</script>
+
+
+
+</body>
+</html>

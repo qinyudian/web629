@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+
+<script>
+    //求n个数的累加
+    function getSum( num ){
+        if ( num === 1 ) { return 1; }
+        var sum = num + getSum( num-1 );
+        return sum;
+    }
+    //console.log( getSum(5) );
+    //求n的阶乘
+    function getJc( jc_num ){
+        if ( jc_num === 1 ) { return 1; }
+        var jc = jc_num * getJc( jc_num - 1 );
+        return jc;
+    }
+    console.log( getJc(2) );
+
+    //求Fibonacci的第n个数1 1 2 3 6 8 12 21……
+
+
+</script>
+
+
+</body>
+</html>

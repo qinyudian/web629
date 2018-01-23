@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../../vuejs/vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<mycom1></mycom1>
+
+	</div>
+	<my-con></my-con>
+
+	<script type="text/javascript">
+		// 创建方式1
+		/*var com1 = Vue.extend({
+			// template: '<h3>这是使用 Vue.extend 创建的组件</h3>'
+			template: '<h3>这是使用 Vue.extend 创建的组件</h3>'
+		});
+		Vue.component('myCom1', com1);*/
+/*
+
+		var con1 = Vue.extend({
+			template: ' 啊啊啊啊 '
+		});
+		Vue.component('myCon',con1);*/
+
+		Vue.component('mycom1', Vue.extend({
+	      template: '<h3>这是使用 Vue.extend 创建的组件</h3>'
+	    }))
+
+
+	    var vm = new Vue({
+	    	el: '#app',
+	    	data: {	},
+	    	methods: {  }
+	    });
+
+	</script>
+</body>
+</html>

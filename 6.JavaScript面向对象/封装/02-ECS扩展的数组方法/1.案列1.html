@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        i,em,span { display: block; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div>div</div>
+    <p>p</p>
+    <span>span</span>
+    <i>i</i>
+    <em>em</em>
+    <div>div</div>
+    <p>p</p>
+    <span>span</span>
+    <i>i</i>
+    <em>em</em>
+    <div>div</div>
+    <p>p</p>
+    <span>span</span>
+    <i>i</i>
+    <em>em</em>
+    <div>div</div>
+    <p>p</p>
+    <span>span</span>
+    <i>i</i>
+    <em>em</em>
+
+</body>
+
+<script>
+    // 获取元素
+    function $( selector ) {
+        /*var arr = [];
+        arr.push.apply( arr , document.querySelectorAll(selector) );
+        return arr;*/
+
+        return [].slice.call( document.querySelectorAll(selector) );
+    }
+//    console.log( $('div')  );
+    $('div,p').forEach(function(e,i){ console.dir( e );
+        e.style.border = e.nodeName === 'DIV' ? '2px solid red' : '2px dashed blue';
+    });
+</script>
+
+</html>

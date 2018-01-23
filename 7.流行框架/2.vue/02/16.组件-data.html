@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="./lib/vue-2.4.0.js"></script>
+</head>
+<body>
+
+<div id="app">
+	<mycom1></mycom1>
+</div>
+
+<script type="text/javascript">
+//Vue.component('mycom1', {
+Vue.component('mycom1', {
+
+	template: '<h1>这是在 component 里的 {{msg}}</h1>',
+	data: function() {
+		return {
+			msg: '我是 component 里 data'
+		}
+	}
+})
+
+
+var vm = new Vue({
+	el: '#app'
+});
+</script>
+
+
+
+
+
+
+
+</body>
+</html>

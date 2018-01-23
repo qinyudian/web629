@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        [v-cloak] { display: none;  }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <p v-cloak>************{{ name }}************</p>
+        <h3 v-text="name">----------------</h3>
+        <h1 v-html="msg"></h1>
+
+
+       <!-- <input type="button" value="按钮" name="" id="" v-bind:title="myTitle" />-->
+
+
+
+        <input type="button" value="按钮" name="" id="" v-on:click="show" :title="myTitle + '我要内容' " />
+
+    </div>
+</body>
+
+<script src="vue.min.js"></script>
+
+<script>
+// vm : 叫做 MVVM 中的 View Model
+var vm = new Vue ({
+    el: '#app',// 表示当前vue对象接管app的div区域
+    data: {
+        name: '黑马程序员', // 相当于是MVVM中的Model这个角色
+        msg: '<i>我是一斜的字</i>',
+        myTitle: '这是我的标题'
+    },
+    methods: {
+        show:function(){
+            console.log( this.name );
+        }
+    }
+});
+
+
+
+</script>
+</html>

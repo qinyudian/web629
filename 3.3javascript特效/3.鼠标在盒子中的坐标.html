@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * { margin: 0; padding: 0; }
+        #box { width: 200px; height: 200px; background-color: deeppink; margin: 20px auto; }
+
+    </style>
+</head>
+<body>
+
+<div id="box"></div>
+
+<script>
+    window.onload = function(){
+        var box = document.getElementById('box');
+        box.onmousemove = function(event){
+            var event = event || window.event;
+            var pageX = event.pageX || event.clientX + document.documentElement.scrollLeft;
+            var pageY = event.pageY || event.clientY + document.documentElement.scrollTop;
+            var moveX = pageX - box.offsetLeft;
+            var moveY = pageY - box.offsetTop;
+
+            box.innerHTML = '<div> moveX：'+ moveX +'<br/> moveY：'+ moveY + '</div>';
+
+        }
+
+
+
+    }
+
+
+</script>
+
+
+</body>
+</html>

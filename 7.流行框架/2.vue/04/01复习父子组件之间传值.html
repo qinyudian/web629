@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="lib/bootstrap-3.3.7.css">
+    <script type="text/javascript" src="lib/vue-2.4.0.js"></script>
+    <script type="text/javascript" src="lib/vue-router.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>这是父元素---{{childrenmsg}}</h2>
+        <hr />
+        <tem-box v-bind:parentmsg="msg" @func="getSonMsg"></tem-box>
+    </div>
+    <template id="tem">
+        <div>
+            <h1>我是子组件，哈啊哈---{{parentmsg}}</h1>
+            <button @click="sendMsg">传递数据给父元素</button>
+        </div>
+    </template>
+    <script>
+        var tem = {
+            template: '#tem',
+            data() {
+                return {
+                    data: '我只是子组件的数据'
+                }
+            },
+            props: ['parentmsg'],
+            methods: {
+                sendMsg() {
+                    this.$emit( 'func', this.data );
+                }
+            }
+        };
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '我是父组件的数据，我有100元钱，孩子你想要吗？',
+                childrenmsg: ''
+            },
+            methods: {
+                getSonMsg(data) {
+                    this.childrenmsg = data;
+                }
+            },
+            components: {
+                'tem-box': tem
+            }
+        });
+    </script>
+</body>
+</html> 

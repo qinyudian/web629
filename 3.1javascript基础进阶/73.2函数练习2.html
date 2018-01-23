@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+    //求任意数组中的最大值
+    /*var arr = [1,5,25,20,36,60,100,200,20,30,50,40,60,800];
+    var max = arr[0]; // 假设第一个数组数值是最大的
+    for ( var i = 0 ; i < arr.length ; i++ ){ //遍历所有的数组
+        if ( max < arr[i] ) //最大的数值比其他的小说明假设的有问题
+        {
+            max = arr[i]; // 赶紧让比它大的赋值给它
+        }
+    }
+    console.log( max );*/
+    /*var newArr = [1,5,25,20,36,60,100,200,20,30,50,40,60,800];
+    function gatMax( arr ){
+        var max = arr[0];
+        for (  var i = 0 ; i < arr.length ; i++ )
+        {
+            if ( max < arr[i] )
+            {
+                max = arr[i];
+            }
+        }
+        return max;
+    }
+    console.log( gatMax( newArr ) );*/
+
+    //求任意数组中的最小值
+    /*var newArr = [1,5,25,20,36,60,100,200,20,30,50,40,60,800];
+    function gatMin( arr ){
+        var min = arr[0];
+        for (  var i = 0 ; i < arr.length ; i++ )
+        {
+            if ( min > arr[i] )
+            {
+                min = arr[i];
+            }
+        }
+        return min;
+    }
+    console.log( gatMin( newArr ) );*/
+
+    //翻转任意数组，返回一个新的数组
+    /*var newArr = [1,5,25,20,36,60,100,200,20,30,50,40,60,800];
+    var arr = [];
+    for ( i = newArr.length-1 ; i > 0 ; i-- )
+    {
+        arr[arr.length] = newArr[i];
+    }
+    console.log( arr );*/
+    /*var arr = [1,5,25,20,36,60,100,200,20,30,50,40,60,800]; console.log(arr);
+    function getNewArr( arr ){
+        var newArr = [];
+        for ( i = arr.length-1 ; i >= 0 ; i-- )
+        {
+            newArr[newArr.length] = arr[i];
+        }
+        return newArr;
+    }
+    console.log( getNewArr( arr ) );*/
+
+    //对任意数组从小到大排序
+    /*var arr = [120,5,25,20,36,60,100,200,20,30,50,40,60,800];
+    var inner = 0,other = 0;
+    for (  var i = 0 ; i < arr.length - 1 ; i++ )
+    {
+        var flag = true; //假设我们这个数组已经是从小到大排序好的
+        for( var j = 0 ; j < arr.length - 1 -i ; j++ )
+        {
+            if( arr[j] > arr[j+1] )
+            {
+                flag = false;//我们的假设是错误的
+                var temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+            inner++;
+        }
+        //优化循环的次数
+        if( flag )
+        {
+            break;
+        }
+        other++;
+    }
+    console.log(arr);
+    console.log('内部循环的次数：'+inner);
+    console.log('外部循环的次数：'+other);*/
+    /*var newArr = [120,5,25,20,36,60,100,200,20,30,50,40,60,800]; console.log( newArr );
+    var inner = 0,other = 0;
+    function sort( arr ){
+        for (  var i = 0 ; i < arr.length - 1 ; i++ )
+        {
+            var sorted = true; //假设我们这个数组已经是从小到大排序好的
+            for( var j = 0 ; j < arr.length - 1 -i ; j++ )
+            {
+                if( arr[j] > arr[j+1] )
+                {
+                    sorted = false;//我们的假设是错误的
+                    var temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                }
+                inner++;
+            }
+            //优化循环的次数
+            if( sorted )
+            {
+                break;
+            }
+            other++;
+        }
+        return arr;
+    }
+    console.log( sort( newArr ) );
+    console.log('内部循环的次数：'+inner);
+    console.log('外部循环的次数：'+other);*/
+
+
+</script>
+
+</body>
+</html>

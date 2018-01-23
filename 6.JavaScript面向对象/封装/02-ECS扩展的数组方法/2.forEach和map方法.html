@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .float {
+            border: 1px dashed red;
+            width: 150px;
+            float: left;
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        .clear {
+            clear: both;
+        }
+        ul{
+            padding: 20px 0;
+        }
+        li {
+            line-height: 30px;
+        }
+        li:hover {
+            background-color: pink;
+        }
+        .red {
+            background-color: lightskyblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="float" id="div1"></div>
+    <div class="float" id="div2"></div>
+    <div class="float" id="div3"></div>
+    <div class="float" id="div4"></div>
+    <div class="float" id="div5"></div>
+    <div class="float" id="div6"></div>
+    <div class="clear"></div>
+
+</body>
+<script>
+    var lis = "常青藤,红缨教育,yojo,代理,联盟,幼教中国,创新工场".split(',');
+
+    /* 传统方法 */
+    (function(){
+        var ul = document.createElement('ul');
+        for ( var i = 0 ; i < lis.length ; i++ ) {
+            var li = document.createElement('li');
+            li.innerHTML = lis[i];
+            ul.appendChild(li);
+        }
+        document.getElementById('div1').appendChild(ul);
+    })();
+
+    /* forEach方法 */
+    (function(){
+        var ul = document.createElement('ul');
+        lis.forEach(function(v,i){
+            var li = document.createElement('li');
+            li.innerHTML = v;
+            ul.appendChild(li);
+        });
+        document.getElementById('div2').appendChild(ul);
+    })();
+
+    /* 使用拼接字符串的方式处理 ( forEach 方法 ) */
+    (function(){
+        var list = [];
+        lis.forEach( (v,i) => (list.push('<li '+ (i%2==0 ? ' class="red"' : '') +'>' +v+ '</li>') ) );
+        document.getElementById('div3').innerHTML = '<ul>'+list.join('')+'</ul>';
+    })();
+
+    /* map方法 */
+    (function(){
+        document.getElementById('div4').innerHTML =
+            '<ul>'+
+                lis.map(function(v,i){
+                    return '<li'+ (i%2==1?' class="red"':'') +'>' + v + '</li>';
+                }).join('')+
+            '</ul>';
+    })();
+
+</script>
+</html>

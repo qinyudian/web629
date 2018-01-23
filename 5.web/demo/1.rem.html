@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0; }
+        div{ width: 1rem; height: 1rem; background-color:pink; }
+    </style>
+    <script>
+        var html = document.getElementsByTagName('html')[0];
+        /*取到屏幕的宽度*/
+        var width = window.innerWidth;
+        /* 640 100  320 50 */
+        var fontSize = 100/640*width;
+        /*设置fontsize*/
+        html.style.fontSize = fontSize +'px';
+        window.onresize = function(){
+            var html = document.getElementsByTagName('html')[0];
+            /*取到屏幕的宽度*/
+            var width = window.innerWidth;
+            /* 640 100  320 50 */
+            var fontSize = 100/640*width;
+            /*设置fontsize*/
+            html.style.fontSize = fontSize +'px';
+        };
+    </script>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

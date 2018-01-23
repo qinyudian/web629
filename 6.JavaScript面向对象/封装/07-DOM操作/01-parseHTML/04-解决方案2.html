@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+    function parseHTML ( htmlStr ) {
+        
+        var rest = [];
+        var div = document.createElement( 'div' ); 
+
+        div.innerHTML = htmlStr; 
+
+        for ( var i = 0; i < div.childNodes.length; i++ ) {
+            rest.push( div.childNodes[ i ] );
+        } // 注意这里不是 dom 的父元素, 因此加入的时候 原始的 DOM 结构不会发生变
+        
+        return rest
+    }
+
+    var list = parseHTML( '<div>1</div><div>2</div><div>3</div><div>4</div>' );
+
+    list.forEach(function ( v ) {
+        v.style.border = '1px solid red';
+        v.style.width = '200px';
+        v.style.height = '100px';
+        v.style.margin = '10px 0';
+        document.body.appendChild( v );
+    }) ;
+
+
+</script>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            width: 300px;
+            /* height: 100px; */
+            margin: 10px 0;
+            border: 1px dashed blue;
+        } 
+        p {
+            border: 1px dotted red;
+            margin: 5px;
+            padding: 0;
+        }
+    </style>
+</head>
+<script src="./js/Itcast.core.js"></script>
+<script src="./js/Itcast.dom.js"></script>
+<script src="./js/Itcast.ctor.js"></script>
+<script>
+    
+    var push = [].push;
+
+    Itcast.extend({
+        unique: function ( iObj ) {
+            var tmp = [],
+                newIOIbj = Itcast();
+            for ( var i = 0; i < iObj.length; i++ ) {
+                if ( tmp.indexOf( iObj[ i ] ) == -1 ) {
+                    tmp.push( iObj[ i ] );
+                }
+            }
+            push.apply( newIOIbj, tmp );
+            return newIOIbj;
+        }
+    });
+
+
+
+    Itcast.fn.extend( {
+        parent: function () {
+            var iObj = Itcast();
+
+            push.apply( iObj, this.map(function ( v ) {
+                return v.parentNode;
+            }));
+            // 去除重复
+            iObj = Itcast.unique( iObj );
+
+            return this.pushStack( iObj );
+        }
+    })
+
+</script>
+<body>
+    <div>
+        <p>p</p>
+        <p>p</p>
+        <p>p</p>
+        <p>p</p>
+    </div>
+    <div>
+        <p>p</p>
+        <p>p</p>
+        <p>p</p>
+    </div>
+    <div>
+        <p>p</p>
+    </div>
+    <div>
+        <p>p</p>
+    </div>
+</body>
+<script>
+   
+    var iObj = I( 'p' ).parent();
+
+</script>
+</html>

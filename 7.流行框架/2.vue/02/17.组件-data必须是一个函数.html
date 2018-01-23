@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="./lib/vue-2.4.0.js"></script>
+</head>
+<body>
+
+<div id="app">
+	<mycom1></mycom1>
+	<mycom1></mycom1>
+	<mycom1></mycom1>
+	<mycom1></mycom1>
+</div>
+
+<template id="tem1">
+	<div>
+		<input type="button" name="" value="+1" id="" @click="add">
+		<h3>{{ count }}</h3>
+		<hr>
+	</div>
+
+</template>
+
+<script type="text/javascript">
+Vue.component('mycom1', {
+	template: '#tem1',
+	data: function() {
+		return {
+			count: 0
+		}
+	},
+	methods: {
+		add(){
+			this.count++
+		}
+	}
+})
+
+
+var vm = new Vue({
+	el: '#app'
+});
+</script>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+    function parseHTML ( htmlStr ) {
+        // 1, 使用什么对象 设置 innerHTML
+        //  自己创建一个 标签对象, 一般使用 div 
+        var div = document.createElement( 'div' ); // 只是一个容器
+
+        div.innerHTML = htmlStr; // 只要已完成赋值, 就会被转换成 DOM 对象
+
+        // 2, 转换好以后 如何取出来使用
+        // 最简单的做法就是使用 childNodes        
+        return div.childNodes;
+    }
+
+    var list = parseHTML( '<div>1</div><div>2</div><div>3</div><div>4</div>' );
+
+    // 没完, 需要将这些 html 加载到 页面中?
+
+
+</script>
+</html>

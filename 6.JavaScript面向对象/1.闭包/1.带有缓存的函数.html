@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        i,em,span { display: block; margin: 20px 0;}
+    </style>
+</head>
+<body>
+
+    <div>div</div>
+    <span>span</span>
+    <i>i</i>
+    <p>p</p>
+    <em>em</em>
+    <h3>h3</h3>
+    <div>div</div>
+    <span>span</span>
+    <i>i</i>
+    <p>p</p>
+    <em>em</em>
+    <h3>h3</h3>
+
+</body>
+<script>
+    var $ = (function(){
+        var cache = {};
+        var cacheKeys = [];
+        var length = 3;
+        return function( selector ) {
+          var nodeList = [];
+          if ( cache[ selector ] ) {
+              nodeList =  cache[ selector ];
+          }else {
+              nodeList =  [].slice.call( document.querySelectorAll(selector) );
+              if ( cacheKeys.length >= length ) {
+                  var key = cacheKeys.shift();
+                  delete cache[ key ];
+              }
+              cacheKeys.push( selector );
+              cache[ selector ] = nodeList;
+
+          }
+
+          return nodeList;
+        }
+    })();
+//    $('div');
+    $('div').forEach(function(e){
+        e.style.border = '1px solid red';
+    });
+
+    $('p').forEach( e => e.style.border = '1px dashed blue' );
+
+    $('span').forEach( e => e.style.border = '1px dashed #000' );
+
+    $('i').forEach( e => e.style.backgroundColor = 'yellow' );
+
+
+</script>
+</html>

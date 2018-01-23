@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+
+</body>
+<script>
+    /*function isArrayLike( array ) {
+        var length = array && array.length;
+        return typeof length === 'number' && length >= 0;
+    }
+    console.log( isArrayLike() );                      // => false
+    console.log( isArrayLike( 123 ) );                 // => false
+    console.log( isArrayLike( "abc" ) );               // => true
+    console.log( isArrayLike( [1,2,3] ) );             // => true
+    console.log( isArrayLike( { name : 'jim' } ) );    // => false
+    console.log( isArrayLike( { length:0 } ) );        // => true*/
+
+    function isArrayLike( array ) {
+        var length = array && array.length;
+        return typeof length === 'number' && length >= 0;
+    }
+    function each( array,callback ){
+        var i,k ;
+        if ( isArrayLike( array ) ) {
+            for ( i = 0 ; i < array.length ; i++ ) {
+                if ( callback.call( array[i] , i , array[i] ) === false ) return false;
+            }
+        }else {
+            for ( k in array ) {
+                if ( callback.call( array[k] , k , array[k] ) === false ) return false;
+            }
+        }
+        return array;
+    }
+
+    /* 数组 */
+    var list = "a,b,c,d,e,f,g".split(',');
+    each( list,function(i,v){
+        //console.log( i +', ' + v );
+    });
+
+
+    /* 对象 */
+    var data = { name: 'jim', age: '20' , gender: '女' };
+    each( data,function(k,v){
+        console.log(k +', ' + v );
+    });
+
+    /* 伪数组 */
+    var warray = document.getElementsByTagName('div');
+    each(warray,function(i,v){
+        this.style.border = '1px dashed red';
+        this.style.width = '100px';
+        this.style.height = '100px';
+    });
+
+</script>
+</html>

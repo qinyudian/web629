@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            padding: 10px;
+            margin: 30px;
+            border: 1px solid brown;
+        }
+        span {
+            border: 1px dashed red;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>1<hr></div>
+    <div>2<hr></div>
+    <div>3<hr></div>
+    <div>4<hr></div>
+    <div>5<hr></div>
+    <div>6<hr></div>
+</body>
+<script src="js/itcast.core.js"></script>
+<script src="js/itcast.dom.js"></script>
+<script src="js/itcast.ctor.js"></script>
+<script>
+    var arr = [],
+        push = arr.push;
+    /*Itcast.fn.appendTo = function(dom){
+        dom.appendChild( this[ 0 ] );
+        return this;
+    }*/
+
+    /*Itcast.fn.appendTo = function(dom){
+        this.each(function(i,v){
+            return dom.appendChild( this );
+        });
+        return this;
+    }*/
+
+    /*Itcast.fn.appendTo = function(doms){
+        return this.each(function(i,v){
+            for ( var i = 0 ; i < doms.length ; i++ ) {
+                doms[i].appendChild( i === doms.length -1 ? this : this.cloneNode(true) );
+            }
+        });
+    }*/
+
+    // 封装 end() 方法
+    Itcast.fn.end = function(){
+        return this.prevObj || this;
+    };
+    // 链破坏操作封装成 方法
+    Itcast.fn.pushStack = function( newObj ){
+        newObj.prevObj = this;
+        return newObj;
+    };
+    Itcast.fn.appendTo = function( selector ){
+        var iObj = Itcast( selector ),
+            len = iObj.length,
+            tmp,
+            rest = [],
+            iNewObj = Itcast(),
+            i;
+        this.each(function(i,v){
+            for ( i = 0 ; i < len ; i++ ) {
+                tmp = i === len -1 ? this : this.cloneNode(true);
+                iObj[i].appendChild( tmp );
+                rest.push( tmp );
+            }
+        });
+        push.apply( iNewObj , rest );
+
+        return this.pushStack( iNewObj );
+    }
+
+
+
+</script>
+
+<script>
+
+    var i1 = I('<p>p1</p>');
+    var i12 = i1.appendTo( I('div').get(1) );
+
+    var i2 = I('<p>p2</p>');
+    var i22 = i2.appendTo( I('div') );
+
+    var i3 = I('<p>p3</p>');
+    var i32 = i3.appendTo( I('div').get(3) );
+
+
+
+</script>
+
+
+</html>

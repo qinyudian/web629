@@ -1,0 +1,32 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+ 	<meta charset="UTF-8">
+ 	<title>Document</title>
+
+ </head>
+ <body>
+
+<div id="box"></div>
+
+<script type="text/html" id="test">
+	<div>不转义：{{#value}}</div>
+	<div>默认转义：{{value}}</div>
+</script>
+
+<script type="text/javascript" src="template.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var data = {
+		value:'<span style="color: red;">hello world</span>'
+	};
+	var html = template('test',data);
+	var box = document.getElementById('box');
+	box.innerHTML = html;
+}	
+</script>
+
+
+ 	
+ </body>
+ </html>

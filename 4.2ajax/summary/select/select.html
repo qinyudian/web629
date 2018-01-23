@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>城市三级联动</title>
+</head>
+<body>
+	<div class="box">
+		省：
+		<select name="" id="province">
+			<option value="请选择省份……">请选择省份……</option>
+		</select>
+		市：
+		<select name="" id="city">
+			<option value="请选择市……">请选择市……</option>
+		</select>
+		县：
+		<select name="" id="county">
+			<option value="请选择县……">请选择县……</option>
+		</select>
+	</div>
+
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	// 公用资源
+	function queryData(obj,callbak){
+		$.ajax({
+			url: 'http://localhost/web629/4.2ajax/summary/select/select.php',
+			data : obj,
+			dataType : 'json',
+			success: function(data){
+				callbak(data);
+			}
+		});
+	}
+	// 省份
+	queryData({
+		flag: 1
+	},function(data){
+		var tag = '';
+		$.each(data,function(i,e){
+			tag += '<option value='+e.id+'>'+e.province+'</option>';
+		});
+		$('#province').append(tag);
+	});
+	// 市
+	$('#province').change(function(){
+		$('#city option:gt(0)').remove();
+		queryData({
+			flag : 2,
+			pId: $(this).val()
+		},function(data){
+			var tag = '';
+			$.each(data,function(i,e){
+				tag += '<option value='+e.id+'>'+e.city+'</option>';
+			});
+			$('#city').append(tag);
+		});
+	});
+	
+	// 县
+	$('#city').change(function(){
+		// $('#city option:gt(0)').remove();
+		queryData({
+			flag : 3,
+			cId : $(this).val()
+		},function(data){
+			var tag = '';
+			$.each(data,function(i,e){
+				tag += '<option value='+e.id+'>'+e.county+'</option>';
+			});
+			$('#county').append(tag);
+		});
+	});
+})
+</script>
+
+
+
+
+
+</body>
+</html>

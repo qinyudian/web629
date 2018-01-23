@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<input type="text" name="" value="请输入你的手机号" id="mobil"/>
+<input type="button" id="btn" value="点击发送验证码"/>
+
+
+<script>
+    window.onload = function (){
+        var timer = null ;
+        var num = 5 ;
+        var btn = document.getElementById('btn');
+        btn.onclick = function() {
+            btn.disabled = true;
+            timer = setInterval(function(){
+                num--
+                btn.value = num + '秒后点击发送验证码';
+                if ( num <= 0 ) {
+                    btn.value = '点击发送验证码';
+                    btn.disabled = false;
+                    clearInterval( timer );
+                    num = 5 ;
+                }
+
+            },1000);
+        };
+
+
+
+    }
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

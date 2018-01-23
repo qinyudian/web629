@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="lib/vue-2.4.0.js"></script>
+	<script type="text/javascript" src="lib/vue-resource.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="lib/bootstrap-3.3.7.css">
+</head>
+<body>
+
+<div id="app">
+	<!-- 添加品牌 -->
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">添加品牌</h3>
+		</div>
+		<div class="panel-body form-inline">
+			<!-- name -->
+			<label>
+				Name:
+				<input class="form-control" type="text" name="" id="" v-model="name" @keyup.enter="add">
+			</label>	
+			<!-- 搜索 -->
+			<input type="button" class="btn btn-primary" value="添加" @click="add" >
+		</div>
+	</div>
+
+	<!-- 数据表格 -->
+	<table class="table table-bordered table-hover table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>姓名</th>
+				<th>时间</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr v-for=" item in list " :key="item.id">
+				<td>{{ item.id }}</td>
+				<td>{{ item.name }}</td>
+				<td>{{ item.ctime }}</td>
+				<td>
+					<a href="javascript:;" @click.prevent="del(item.id)">删除</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<script type="text/javascript">
+// 设置全局数据接口的根域名
+Vue.http.options.root = 'http://vue.studyit.io/';
+// 设置全局的 emulateJSON 选项
+Vue.http.options.emulateJSON = true;
+// 自定义键盘修饰符
+Vue.config.keyCodes.f2 = 113;
+/*
+	使用：
+	<input type="text" v-model="name" @keyup.f2="add">
+ */
+var vm = new Vue({
+	el: '#app',
+	data: {
+		name: '',
+		list: [] // 存放所有数据
+	},
+	created() {
+		this.getAllList();
+	},
+	methods: {
+		getAllList: function(){ // 获奖数据
+			var url = 'api/getprodlist';
+			this.$http.get(url).then(data => {
+				var data = data.body;
+				if ( data.status == 0 ) {
+					this.list = data.message;
+				}else {
+					alert( '获取数据失败' );
+				}
+			});
+		},
+		add: function(){ // 添加数据
+			var url = 'api/addproduct';
+			this.$http.post( url , { name: this.name } /*, { emulateJSON : true }*/ ).then( data => {
+				data = data.body;
+				if ( data.status === 0 ) {
+					// 获取数据成功
+					this.getAllList();					
+					this.name = '';
+				}else {
+					// 获取数据失败
+					alert( '添加失败' );
+				}
+			});
+		},
+		del: function(id) { // 删除数据
+			var url = 'api/delproduct/' + id;
+			this.$http.get(url).then( data => {
+				if ( data.body.status === 0 ) {
+					// 删除成功
+					this.getAllList();
+					console.log( '111' );
+				}else {
+					alert( '删除失败' );
+				}
+			})
+		}
+	}
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+</head>
+<body>
+
+<div id="container">
+	<div>
+		图书编码：<input type="text" name="code" id="code">
+		<input type="button" value="按钮" id="btn">
+	</div>
+	<div id="info"></div>
+</div>
+
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#btn').click(function(){
+		var code = $('#code').val();
+		$.ajax({
+			type : 'post',
+			url : '6.php',
+			data : {code:code},
+			dataType : 'json',
+			success : function(data){
+				if ( data.flag == 0 ) {
+					$('#info').html('该读书不存在');
+				}else{
+					var teg = '<ul><li>'+data.bookname+'</li><li>'+data.author+'</li><li>'+data.desc+'</li></ul>';
+					$('#info').html(teg);
+				}
+			},
+			error: function(data){
+				$('#info').html('服务器错误，请与服务器管理员联系');
+			}
+		});
+	});
+})
+</script>
+	
+</body>
+</html>

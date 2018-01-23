@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+	<input type="button" value="点击" id="btn">
+	<script type="text/javascript" src="ajax.js"></script>
+	<script type="text/javascript">
+	var btn = document.getElementById('btn');
+	btn.onclick = function(){
+		ajax({
+			type : 'get',
+			url : 'http://localhost/web629/4.2ajax/ajax/jsonp.php',
+			success:function(data){
+                console.log(data);
+            }
+		});
+	}
+	</script>
+
+</body>
+</html>

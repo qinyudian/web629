@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>瀑布流ajax</title>
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #container{
+            width: 1050px;
+            margin: 40px auto;
+        }
+        #container .items{
+            position: relative;
+            min-height: 500px;
+        }
+        #container .item{
+            width: 192px;
+            border: 1px solid #ccc;
+            padding:3px;
+            position: absolute;
+        }
+        #container .item img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        #container .btn {
+            width: 280px;
+            height: 40px;
+            margin: 30px auto 0;
+            text-align: center;
+            line-height: 40px;
+            background-color: #CCC;
+            border-radius: 6px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        #container .btn.loading{
+            background-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="items">
+             <!--<div class="item">
+                <img src="images/P_000.jpg">
+                <p>土地是以它的肥沃和收获而被估价的；才能也是土地，不过它生产的不是粮食，而是真理。如果只能滋生瞑想和幻想的话，即使再大的才能也只是砂地或盐池，那上面连小草也长不出来的。 —— 别林斯基</p>
+             </div>
+             <div class="item">
+                <img src="images/P_001.jpg">
+                <p>土地是以它的肥沃和收获而被估价的；才能也是土地，不过它生产的不是粮食，而是真理。如果只能滋生瞑想和幻想的话，即使再大的才能也只是砂地或盐池，那上面连小草也长不出来的。 —— 别林斯基</p>
+             </div>
+             <div class="item">
+                <img src="images/P_002.jpg">
+                <p>土地是以它的肥沃和收获而被估价的；才能也是土地，不过它生产的不是粮食，而是真理。如果只能滋生瞑想和幻想的话，即使再大的才能也只是砂地或盐池，那上面连小草也长不出来的。 —— 别林斯基</p>
+             </div>
+            <div class="item">
+                <img src="images/P_003.jpg">
+                <p>土地是以它的肥沃和收获而被估价的；才能也是土地，不过它生产的不是粮食，而是真理。如果只能滋生瞑想和幻想的话，即使再大的才能也只是砂地或盐池，那上面连小草也长不出来的。 —— 别林斯基</p>
+            </div>
+            <div class="item">
+                <img src="images/P_004.jpg">
+                <p>土地是以它的肥沃和收获而被估价的；才能也是土地，不过它生产的不是粮食，而是真理。如果只能滋生瞑想和幻想的话，即使再大的才能也只是砂地或盐池，那上面连小草也长不出来的。 —— 别林斯基</p>
+            </div>
+             <div class="item">
+                <img src="images/P_005.jpg">
+                <p>土地是以它的肥沃和收获而被估价的；才能也是土地，不过它生产的不是粮食，而是真理。如果只能滋生瞑想和幻想的话，即使再大的才能也只是砂地或盐池，那上面连小草也长不出来的。 —— 别林斯基</p>
+            </div>
+            <div class="item">
+                <img src="images/P_006.jpg">
+                <p>土地是以它的肥沃和收获而被估价的；才能也是土地，不过它生产的不是粮食，而是真理。如果只能滋生瞑想和幻想的话，即使再大的才能也只是砂地或盐池，那上面连小草也长不出来的。 —— 别林斯基</p>
+            </div>
+            <div class="item">
+                <img src="images/P_007.jpg">
+                <p>土地是以它的肥沃和收获而被估价的；才能也是土地，不过它生产的不是粮食，而是真理。如果只能滋生瞑想和幻想的话，即使再大的才能也只是砂地或盐池，那上面连小草也长不出来的。 —— 别林斯基</p>
+            </div>
+             <div class="item">
+                <img src="images/P_008.jpg">
+                <p>土地是以它的肥沃和收获而被估价的；才能也是土地，不过它生产的不是粮食，而是真理。如果只能滋生瞑想和幻想的话，即使再大的才能也只是砂地或盐池，那上面连小草也长不出来的。 —— 别林斯基</p>
+            </div>
+            <div class="item">
+                <img src="images/P_009.jpg">
+                <p>土地是以它的肥沃和收获而被估价的；才能也是土地，不过它生产的不是粮食，而是真理。如果只能滋生瞑想和幻想的话，即使再大的才能也只是砂地或盐池，那上面连小草也长不出来的。 —— 别林斯基</p>
+            </div>
+            <div class="item">
+                <img src="images/P_010.jpg">
+                <p>土地是以它的肥沃和收获而被估价的；才能也是土地，不过它生产的不是粮食，而是真理。如果只能滋生瞑想和幻想的话，即使再大的才能也只是砂地或盐池，那上面连小草也长不出来的。 —— 别林斯基</p>
+            </div>
+            <div class="item">
+                <img src="images/P_011.jpg">
+                <p>土地是以它的肥沃和收获而被估价的；才能也是土地，不过它生产的不是粮食，而是真理。如果只能滋生瞑想和幻想的话，即使再大的才能也只是砂地或盐池，那上面连小草也长不出来的。 —— 别林斯基</p>
+            </div>
+            <div class="item">
+                <img src="images/P_012.jpg">
+                <p>土地是以它的肥沃和收获而被估价的；才能也是土地，不过它生产的不是粮食，而是真理。如果只能滋生瞑想和幻想的话，即使再大的才能也只是砂地或盐池，那上面连小草也长不出来的。 —— 别林斯基</p>
+            </div>-->
+        </div>
+        <p class="btn loading">正在加载……</p>
+    </div>
+</body>
+<!-- 此处开始js -->
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/jquery.waterFall.js"></script>
+<script>
+/*window.onload = function(){
+    $('.items').waterFall();
+};*/
+
+window.onload = function(){
+    function getData(page) {
+        $.ajax({
+            type: 'post',
+            url: 'data.php',
+            data: { page: page, pageSize: 15 },
+            success: function(data){
+                RenderHtml(data,page);
+            } //success E
+        }); // $.ajax E
+    } // function getData
+    getData(1);
+    // 数据渲染函数
+    function RenderHtml(data,page) {
+        //console.log( data.items );
+        var items = data.items ;
+        var html = '';
+        $.each(items,function( i,v ){
+            html += '<div class="item">'
+                 +      '<img src="'+ v.path+'">'
+                 +      '<p>'+v.text+'</p>'
+                 +  '</div>';
+        }); // $.each('items') E
+        $('.items').append(html);
+        // 设置page
+        $('.btn').attr( 'next-page' , data.page );
+
+        // 优化图片加载
+        var isLoad = true;
+        function imgLoad() {
+            var imgs = $('.item > img');
+            $.each(imgs,function( i,v ) {
+                if ($(v).height() == 0 ) {
+                    isLoad = false;
+                    return false;
+                };
+            });
+            if ( isLoad ){
+                $('.items').waterFall();
+            }else {
+                isLoad = true;
+                setTimeout(function(){
+                    imgLoad();
+                },500);
+            }
+        } //imgLoad() E
+        imgLoad();
+    } //RenderHtml() E
+    // 点击按钮显示下一页
+    $('.btn').on('click',function(){
+        var nextPage = $(this).attr('next-page');
+        getData(nextPage);
+    }); // $('.btn').click() E
+}
+</script>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            width: 200px;
+            height: 200px;
+            margin: 200px auto;
+            position: relative;
+            /* 让子元素保留3d变换之后的效果 */
+            transform-style: preserve-3d;
+            /* 让box默认旋转，方便观察 */
+            transform: rotate3d(1,1,0,-30deg);
+            /* 添加透视景深效果 */
+            perspective: 0px;
+            /* 设置透视的观察角度 */
+            perspective-origin: 0px 0px;
+        }
+        .box > div {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            opacity: 0.5;
+        }
+        .face {
+            background-color: blue;
+            transform: translate3d(0,0,100px);
+        }
+        .bark {
+            background-color: silver;
+            transform: translate3d(0,0,-100px) rotate3d(0,1,0,180deg);
+        }
+        .top {
+            background-color: lawngreen;
+            /* 移动+旋转 */
+            transform: translate3d(0,-100px,0) rotate3d(1,0,0,90deg);
+        }
+        .bottom {
+            background-color: lightskyblue;
+            /* 移动+旋转 */
+            transform: translate3d(0,100px,0) rotate3d(1,0,0,90deg);
+        }
+        .left {
+            background-color: red;
+            /* 移动+旋转 */
+            transform: translate3d(-100px,0,0) rotate3d(0,1,0,90deg);
+        }
+        .right {
+            background-color: deeppink;
+            /* 移动+旋转 */
+            transform: translate3d(100px,0,0) rotate3d(0,1,0,90deg);
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+
+    <div class="box">
+        <div class="face">face</div>
+        <div class="bark">bark</div>
+        <div class="top">top</div>
+        <div class="bottom">bottom</div>
+        <div class="left">left</div>
+        <div class="right">right</div>
+    </div>
+
+
+
+</body>
+</html>

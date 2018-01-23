@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script src="../jquery-3.1.0.js"></script>
+<script>
+    // 1, 两边都只有 一个元素
+    $('body').append('<div>我是jq添加进来的</div>');
+
+
+
+    // 2, 前面有两个以及两个以上的元素
+//    $('电冰箱,电暖器,电脑,手机,移动电源'.split(',').map(function( v ){
+//        return '<div>'+ v +'</div><hr>';
+//    }).join('')).appendTo( document.body );
+
+    $('body').append(
+            '电冰箱,电暖器,电脑,手机,移动电源'.split(',').map(function(v){
+                return '<div>' + v + '</div><hr>';
+            }).join('')
+    );
+
+
+
+    // 3, 左边如果有多个元素
+    // 创建 一个 p 标签, 加到 div 中
+//    $('<div>我是第二个div</div><hr>').appendTo('div');
+
+    $('div').append('<span>我是span</span>');
+
+
+
+    // 4, 如果左边的是 多个元素, 右边的也是多个元素?
+    
+</script>
+</html>

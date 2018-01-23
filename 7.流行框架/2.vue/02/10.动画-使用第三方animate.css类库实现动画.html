@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="./lib/animate.css">
+	<script type="text/javascript" src="./lib/vue-2.4.0.js"></script>
+</head>
+<body>
+
+<div id="app">
+	<input type="button" value="toggle" @click="flag=!flag">
+
+	<!-- 
+		离开：bounceOut
+		进入：bounceIn
+		设置动画时长：duration
+	-->
+	<transition 
+	enter-active-class="bounceInRight" 
+	leave-active-class="bounceOutLeft" 
+	:duration=" { enter: 200 , leave: 400 } " >
+		<h1 v-if="flag" class="animated">我是一個h1</h1>
+	</transition>
+
+
+</div>
+
+<script type="text/javascript">
+var vm = new Vue({
+	el: '#app',
+	data: {
+		flag: false
+	},
+	methods: {
+
+	}
+});	
+
+</script>
+
+
+</body>
+</html>

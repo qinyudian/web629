@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav {
+            height: 30px;
+            background: #036663;
+            border-bottom: 1px solid #369;
+            line-height: 30px;
+            padding-left: 30px;
+        }
+
+        .nav a {
+            color: #fff;
+            text-align: center;
+            font-size: 14px;
+            text-decoration: none;
+
+        }
+
+        .d-box {
+            width: 400px;
+            height: 300px;
+            border: 5px solid #eee;
+            box-shadow: 2px 2px 2px 2px #666;
+            position: absolute;
+            top: 40%;
+            left: 40%;
+        }
+
+        .hd {
+            width: 100%;
+            height: 25px;
+            background-color: #7c9299;
+            border-bottom: 1px solid #369;
+            line-height: 25px;
+            color: white;
+            cursor: move;
+        }
+
+        #box_close {
+            float: right;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="nav">
+    <a href="javascript:;" id="register">注册信息</a>
+</div>
+<div class="d-box" id="d_box">
+    <div class="hd" id="drop">注册信息 (可以拖拽)
+        <span id="box_close">【关闭】</span>
+    </div>
+    <div class="bd"></div>
+</div>
+
+
+<script>
+window.onload = function(){
+    //鼠标在页面上移动，让盒子跟着鼠标移动
+    function $(element){
+        return document.getElementById(element);
+    }
+    var drop = $('drop');//拖动条
+    var d_box = $('d_box');//大盒子
+    drop.onmousedown = function(event){
+        //兼容处理
+        var event = event || window.event;
+        var pageX = event.pageX || event.clientX + document.documentElement.scrollLeft;
+        var pageY = event.pageY || event.clientY + document.documentElement.scrollTop;
+        //鼠标按下时在页面的位置
+        var boxX = pageX - d_box.offsetLeft;
+        var boxY = pageY - d_box.offsetTop;
+        document.onmousemove = function(event){
+            //兼容处理
+            var event = event || window.event;
+            var pageX = event.pageX || event.clientX + document.documentElement.scrollLeft;
+            var pageY = event.pageY || event.clientY + document.documentElement.scrollTop;
+            //d_box 的坐标
+            var targetX = pageX - boxX;
+            var targetY = pageY - boxY;
+            //清除选中文字
+            window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+            //设置拖拽范围
+            if( targetX < 0 ) { targetX = 0; }
+            //如果targetX的值大于（网页窗口的宽度-d_box的宽度），那么就让让如果targetX的值等于（网页窗口的宽度-d_box的宽度）
+            if( targetX > client().width - d_box.offsetWidth ) {
+                targetX = client().width - d_box.offsetWidth;
+            }
+            if( targetY < 0 ) { targetY = 0; }
+            if( targetY > client().height - d_box.offsetHeight ){
+                targetY = client().height - d_box.offsetHeight;
+            }
+            /**
+             * 获取网页可视的宽度和高度
+             * @returns {{width: (*|number), height: (Number|number)}}
+             */
+            function client(){
+                return {
+                    width: window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
+                    height: window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+                }
+            }
+
+            console.log(client().width);
+            //设置页面的拖拽位置
+            d_box.style.left = targetX +'px';
+            d_box.style.top = targetY +'px';
+        }
+    }
+    //鼠标弹起，盒子就不应该跟着了
+    document.onmouseup = function(){
+        document.onmousemove = null;
+    }
+}
+</script>
+
+
+
+</body>
+</html>

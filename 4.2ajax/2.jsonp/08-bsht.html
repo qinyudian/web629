@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		.box {
+			padding: 10px;
+			width: 500px;
+			height: 400px;
+			margin: auto;
+			background-color: green;
+		}
+		.info {
+			padding: 30px 0 0 0;
+		}
+		.info  li {
+			margin-bottom: 10px;
+		}
+		.info p {
+			background-color: pink;
+		}
+	</style>
+</head>
+<body>
+	
+<div class="box">
+	快递查询：<input type="text" name="" id="code">
+	<input type="button" value="查询" id="btn">
+	<div class="info"></div>
+</div>
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#btn').click(function(){
+		var code = $('#code').val();
+		$.ajax({
+			url : 'http://localhost/web629/4.2ajax/jsonp/ems.php',
+			data : { code:code }, // 传递的参数，查询的参数
+			dataType : 'jsonp', // 数据类型
+			jsonp : 'cb', // 回调函数的名称
+			success : function(data){
+				if ( data.data.info.status !== 1 ) {
+					$('.info').html(data.msg);
+					return;
+				}
+				var bsht = data.data.info.context;
+				var tag = '<ul>';
+				$.each(bsht,function(i,e){
+					tag += '<li>';
+					// 时间 console.log(e.time);   1504183094
+					var time = e.time;
+					var t = new Date();
+					t.setTime(time + '000');
+					var t = t.getFullYear() + '年' + t.getMonth()+ '月' +t.getDay()+ '日' + ( t.getHours() > 12 ? '上午' : '下午' ) + t.getHours() + '时' +t.getSeconds()+ '分' +t.getMinutes()+ '秒' ;
+					tag += '<p>'+t+'</p>';
+
+					// 描述 console.log(e.desc);
+					tag +='<div>'+e.desc+'</div>';
+					tag += '</li>';
+					$('.info').html(tag);
+					
+				});
+			}
+		});
+	});
+})
+
+</script>
+
+
+</body>
+</html>

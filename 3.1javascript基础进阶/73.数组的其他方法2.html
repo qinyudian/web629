@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        //遍历一个数组
+        var arr = [1,2,3,4,5,6,7,8,9];
+        arr.forEach(function(e,index,array){
+           // console.log(e);
+            //console.log(index);
+            //console.log(array);
+        });
+
+        //清空一个数组
+        //方法一 （利用splice）
+        /*console.log( arr.splice(0, arr.length) );
+        console.log(arr);*/
+        //方法二 （将数组的length为0）
+        /*arr.length = 0;
+        console.log(arr);*/
+        //方法三 （直接将数组设置为空）推荐
+        arr = [];
+        console.log(arr);
+
+    </script>
+
+
+
+
+</body>
+</html>

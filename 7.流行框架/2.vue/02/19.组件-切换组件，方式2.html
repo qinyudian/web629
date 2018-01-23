@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="./lib/vue-2.4.0.js"></script>
+	<style type="text/css">
+
+		.v-enter,
+		.v-leave-to {
+			opacity: 0;
+			transform: translateX(150px);
+		}
+		.v-enter-active,
+		.v-leave-active {
+			transition:  all 0.5s ease;
+		}
+	</style>
+</head>
+<body>
+<div id="app">
+	<a href="" @click.prevent="comName='login'">登录</a>
+	<a href="" @click.prevent="comName='register'">注册</a>
+	<a href="" @click.prevent="comName='rest'">重置密码</a>
+	<transition mode="out-in" appear>
+		<component :is="comName"></component>		
+	</transition>
+</div>
+<script type="text/javascript">
+// 登录组件
+Vue.component('login', {
+	template: '<h3>登录组件</h3>'
+});
+// 注册组件
+Vue.component('register',{
+	template: '<h3>注册组件</h3>'
+});
+// 重置组件
+Vue.component('rest',{
+	template: '<h3>重置件</h3>'
+});
+
+var vm = new Vue({
+	el: '#app',
+	data: {
+		comName: 'login'
+	}
+});
+</script>
+</body>
+</html>

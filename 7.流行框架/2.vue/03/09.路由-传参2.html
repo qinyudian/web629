@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="lib/bootstrap-3.3.7.css">
+	<script type="text/javascript" src="lib/vue-2.4.0.js"></script>
+	<script type="text/javascript" src="lib/vue-router.min.js"></script>
+	<style>
+	.myActive {
+		color: red;
+		font-size:  24px;
+		text-decoration: underline;
+	}
+	.v-enter,
+	.v-leave-to {
+		opacity: 0;
+		transform: translateX(200px);
+	}
+	.v-enter-active,
+	.v-leave-active {
+		transition: all 0.5s ease;
+	}
+
+	</style>
+</head>
+<body>
+	<div id="app">
+		<router-link to="/login/10/占三" tag="span">登录</router-link>
+		<router-link to="/reg" tag="span">注册</router-link>
+
+		<transition mode="out-in">
+			<router-view></router-view>
+		</transition>
+	</div>
+	<script>
+	var login = {
+		template: '<h1>登录--{{ $route.params.name }}</h1>',
+		created(){
+			//console.log( this.$route );
+			console.log( this.$route.params );
+		}
+	}
+	var reg = {
+		template: '<h1>注册</h1>'
+	}
+	var router = new VueRouter({
+		routes: [
+			{ path: '/' , redirect: '/login' },
+			{ path: '/login/:id/:name' , component: login },
+			{ path: '/reg' , component: reg }
+		],
+		linkActiveClass: 'myActive'
+	});
+	var vm = new Vue({
+		el: '#app',
+		data: {},
+		methods: {},
+		router
+	});
+	</script>
+</body>
+</html>

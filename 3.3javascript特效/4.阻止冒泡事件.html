@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * { margin: 0 ; padding: 0; }
+        #father {
+            width: 200px;
+            height: 200px;
+            background-color: #f77c3d;
+            margin: 30px ;
+        }
+        #son { 
+            width: 100px; 
+            height: 100px;
+            background-color: #CC00FF;
+        }
+    </style>
+</head>
+<body>
+
+<div id="father">
+    <div id="son"></div>
+</div>
+
+<script>
+window.onload = function(){
+    var son = document.getElementById('son');
+    var father = document.getElementById('father');
+    son.onmouseout = function(event){
+        /*maoPao(event);
+        function maoPao(event){
+            var event = event || window.event;
+            if ( event.stopPropagation ){
+                return event.stopPropagation();//主流浏览器
+            }else{
+                return event.cancelBubble = true;//ie678
+            }
+        }*/
+        var event = event || window.event;
+        if ( event.stopPropagation ){
+            return event.stopPropagation();//主流浏览器
+        }else{
+            return event.cancelBubble = true;//ie678
+        }
+    };
+    father.onmouseout =function(){
+        alert( '鼠标离开父盒子啦' );
+    };
+}
+
+
+</script>
+
+</body>
+</html>

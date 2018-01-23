@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * { margin: 0; padding: 0; }
+        .img {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+<img class="img" id="pic" src="img/1.png" alt=""/>
+
+<script src="animate.js"></script>
+<script>
+    window.onload = function(){
+        var pic = document.getElementById('pic');
+        document.onclick = function(event){
+            var event = event || window.event;
+            var pageX = event.pageX || event.clientX + document.documentElement.scrollLeft;
+            var pageY = event.pageY || event.clientY + document.documentElement.scrollTop;
+            var targetX = pageX - pic.offsetWidth/2;
+            var targetY = pageY - pic.offsetHeight/2;
+            animate( pic, { 'left': targetX , 'top': targetY } );
+
+
+        }
+
+    }
+
+
+</script>
+
+</body>
+</html>

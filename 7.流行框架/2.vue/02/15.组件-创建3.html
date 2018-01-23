@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../../vuejs/vue.min.js"></script>
+</head>
+<body>
+<div id="app1">
+	<mycon1></mycon1>
+</div>
+<template id="app1-tem1">
+	<div>
+		<h3>这是通过 template 元素,在外部定义的组件结构,这个方式,有代码的只能提示和高亮</h3>
+  		<h4>好用,不错!</h4>	
+	</div>
+</template>
+
+<!-- app2 begin -->
+<div id="app2">
+	<mycon2></mycon2>
+	<login></login>
+</div>
+<template id="app2-tem1">
+	<div>
+		<h2>少时诵诗书</h2>
+		<h2>少时诵诗书22222</h2>
+	</div>	
+</template>
+
+
+<template id="login">
+	<h1>我是一个私有的组件</h1>
+</template>
+
+<script type="text/javascript">
+	Vue.component('mycon1',{
+		template: '#app1-tem1'
+	});
+
+	var vm = new Vue({
+    	el: '#app1',
+    	data: {	},
+    	methods: {  }
+    });
+
+	/* app2 */
+	Vue.component('mycon2',{
+		template: '#app2-tem1'
+	});
+	var vm2 = new Vue({
+		el: '#app2',
+		data: {},
+		methods: {},
+		components: {
+			login: {
+				template: '#login'
+			}
+		},
+
+
+		beforeCreate() {},
+		created() {},
+		
+
+
+
+
+
+	});
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+
+<script>
+    //求任意半径的圆的面积
+    /*var radii = prompt('请输入圆的半径');
+    function area(r){
+        var areas = Math.PI*r*r;
+        return areas;
+    }
+    console.log( area(radii) );*/
+
+    //求任意半径的圆的周长
+    /*var radii = prompt( '请输入圆的半径' );
+    function zhou(r){
+        var zhouc = 2*Math.PI*r;
+        return zhouc;
+    }
+    console.log( zhou(radii) );*/
+
+    //求任意2个数中的最大值
+    /*var a = 5;
+    var b = 10;
+    function max(a,b){
+       var max = a > b ? a : b ;
+        return max;
+    }
+    console.log( max(a,b) );*/
+
+    //求任意3个数中的最大值
+    /*var a = 5;
+    var b = 10;
+    var c = 20;
+    function max(a,b,c){
+        var maxZhi = ( a > b ? a : b ) > c ? ( a > b ? a : b ) : c ;
+        return maxZhi;
+    }
+    console.log( max(a,b,c) );*/
+
+    /*function getMax3( a , b , c ){
+        var d = getMax( a , b );
+        var e = getMax( d , c );
+        return e ;
+    }*/
+
+    function getMax( a , b ){
+        return a > b ? a : b ;
+    }
+    function getMax3( a , b , c ){
+        return getMax( getMax( a , b ) , c ) ;
+    }
+    //console.log( getMax(1,8) );
+    console.log( getMax3( 10 , 80 , 20 ) );
+
+</script>
+
+</body>
+</html>

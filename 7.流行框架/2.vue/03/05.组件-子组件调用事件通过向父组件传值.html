@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="lib/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+	<com @fun="show"></com>
+</div>
+<template id="tem1">
+	<div>
+      	<h1>这是 子组件</h1>
+		<input type="button" value="点击我调用父组件的事件" name="" @click="myclick">
+		
+	</div>
+</template>
+<script type="text/javascript">
+var com = {
+	template: '#tem1',
+	data: function(){
+		return { 
+			sunmsg: { name: '小头儿子', age: 6 }
+		}
+	},
+	methods: {
+		myclick(){
+			this.$emit('fun',this.sunmsg);
+		}
+	}
+}
+var vm = new Vue({
+	el: '#app',
+	data: {
+		parentmsg: null
+	},
+	methods: {
+		show(data){
+			// console.log( '我是父组件的数据=====' + data + data2  );
+			this.parentmsg = data;
+			console.log( this.parentmsg );
+		}
+	},
+	components: {
+		com
+	}
+});
+</script>
+</body>
+</html>

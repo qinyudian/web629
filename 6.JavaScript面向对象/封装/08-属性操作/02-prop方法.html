@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./js/Itcast.core.js"></script>
+    <script src="./js/itcast.ctor.js"></script>
+    <script src="./js/Itcast.dom.js"></script>
+    <script src="./js/Itcast.event.js"></script>
+    <script SRC="./js/Itcast.style.js"></script>
+    <script>
+        Itcast.fn.extend({
+            attr: function ( name, value ) {
+                if  ( value === undefined ) {
+                    return this[ 0 ].getAttribute( name );
+                } else {
+                    return this.each( function () {
+                        this.setAttribute( name, value );
+                    });
+                }
+            },
+            prop: function ( name, value ) {
+                if  ( value === undefined ) {
+                    return this[ 0 ][ name ];
+                } else {
+                    return this.each( function () {
+                        this[ name ] = value;
+                    });
+                }
+            }
+
+
+        })
+
+    </script>
+</head>
+<body>
+    <input type="button" value="点击" id="btn1"> 
+    <input type="button" value="点击" id="btn2" onclick="alert(1)">   
+</body>
+<script>
+    // 点击 btn1 让 btn2 不能够使用
+    I( '#btn1' ).click(function () {
+        I( '#btn2' ).prop( 'disabled', true );
+    });
+</script>
+</html>

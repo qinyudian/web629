@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+    function Person(name,age,gender){
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
+
+
+    function Student( name, age, gender, chinese, math, english ) {
+        Person.call( this,name,age,gender );
+        this.chinese = chinese;
+        this.math = math;
+        this.english = english;
+    }
+    Student.prototype.sayHello = function(){
+        console.log( '你好,我是'+this.name+',我今年'+this.age+ ',我是一个' +this.gender );
+    };
+    var s = new Student( '张三','15','女','92','80','60' );
+    s.sayHello();
+
+</script>
+</html>

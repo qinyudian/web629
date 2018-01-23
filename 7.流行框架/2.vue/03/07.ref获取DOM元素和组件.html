@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="lib/bootstrap-3.3.7.css">
+	<script type="text/javascript" src="lib/vue-2.4.0.js"></script>
+</head>
+<body>
+	<div id="app">
+		<button @click="getElement">按钮</button>
+		<div ref="mydiv">我是一个div</div>
+		<hr>
+		<tem-box ref="myTem"></tem-box>
+	</div>
+	<template id="tem1">
+		<div>我是子组件</div>
+	</template>
+	<script>
+	var tembox = {
+		template: '#tem1',
+		data(){
+			return {
+				name: '子组件'
+			}
+		},
+		methods: {
+			show(){
+				alert( '显示啦' );
+			}
+		}
+	}
+
+	var vm = new Vue({
+		el: '#app',
+		data: {
+
+		},
+		methods: {
+			getElement() {
+				console.log( this.$refs.mydiv.innerText );
+				console.log( this.$refs.myTem.name );
+				this.$refs.myTem.show();
+			}
+		},
+		components: {
+			'tem-box': tembox
+		}
+	});
+	</script>
+</body>
+</html>

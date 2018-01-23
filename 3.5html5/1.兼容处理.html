@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        header{
+            display: block;
+            width: 100%;
+            height: 100px;
+            background-color: red;
+        }
+        nav{
+            display: block;
+            width: 100%;
+            height: 36px;
+            background-color: green;
+        }
+        /*IE9:行级元素在设置宽度的时候是失效
+        IE8:完全不支持语义标签(不支持html5):在IE8中，它不认识语义标签，所以无法解析这些标签，也就意味着所写的样式无效。*/
+        main{
+            /*将行级元素转换为块级元素*/
+            display: block;
+            width: 100%;
+            height: 500px;
+            background-color: #ccc;
+        }
+        main > article{
+            width: 80%;
+            height: 100%;
+            background-color: purple;
+            float: left;
+        }
+        main > aside{
+            width: 20%;
+            height: 100%;
+            background-color: pink;
+            float: right;
+        }
+        footer{
+            display: block;
+            width: 100%;
+            height: 80px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+<!--html5shiv.min.pcjs:在默认情况下，IE8及以下的IE版本不支持HTML5,引入这个文件就可以做到兼容-->
+<script src="../js/html5shiv.min.js"></script>
+<header>头部</header>
+<nav>导航</nav>
+<main>
+    <article>左边</article>
+    <aside>右边</aside>
+</main>
+<footer>底部</footer>
+
+
+</body>
+</html>

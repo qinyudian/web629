@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 300px;
+            height: 500px;
+            border: 1px solid red;
+            margin: 100px;
+            position: relative;
+        }
+
+        .content {
+            padding: 5px 18px 5px 5px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .scroll {
+            width: 18px;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: #eee;
+        }
+
+        .bar {
+            /*height: 100px;*/
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: red;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <div class="content" id="content">
+        我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容
+    </div>
+    <div class="scroll">
+        <div class="bar" id="bar"></div>
+    </div>
+</div>
+<script>
+    //找人
+    var box = document.getElementById("box");
+    var content = document.getElementById("content");
+    var bar = document.getElementById("bar");
+    //需求：拖动滚动条 让滚动条跟着鼠标走 内容也要按照比例移动
+    //1.1按照比例计算bar的高度
+    //bar的高度/侧边栏的高度=显示出来的内容的高度/内容的整体高度
+    //bar的高度/box的高度=box的高度/content高度
+    //bar的高度=box的高度/content高度*box的高度
+    //1.2如果内容没有全部显示出来 才需要有滚动条 如果内容能够完全显示 就不需要有滚动条了
+    if (content.offsetHeight > box.offsetHeight) {
+        bar.style.height = box.offsetHeight / content.offsetHeight * box.offsetHeight + "px";
+    } else {
+        bar.style.height = 0;
+    }
+    //2.鼠标在bar上按下 bar变为可以拖动的状态 鼠标移动的时候 让bar跟着鼠标走
+    bar.onmousedown = function (event) {
+        var event = event || window.event;
+        //获取鼠标在页面中的位置
+        var pageY = event.pageY || event.clientY + document.documentElement.scrollTop;
+        //获取鼠标在bar上按下时在bar中的位置
+        var barBoxY = pageY - box.offsetTop - bar.offsetTop;
+        document.onmousemove = function (event) {
+            var event = event || window.event;
+            //鼠标在页面中的坐标
+            var pageY = event.pageY || event.clientY + document.documentElement.scrollTop;
+            //鼠标在盒子中的坐标
+            var boxY = pageY - box.offsetTop;
+            //bar应该去的位置
+            var barY = boxY - barBoxY;
+            //3.限制bar的运动范围
+            if (barY < 0) {
+                barY = 0;
+            }
+            if (barY > box.offsetHeight - bar.offsetHeight) {
+                barY = box.offsetHeight - bar.offsetHeight;
+            }
+            //让bar跟着鼠标在盒子中的坐标走
+            bar.style.top = barY + "px";
+            //清除选中文字
+            window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+            //4.按照比例移动内容
+            //内容要移动的距离/bar当前移动的距离 = 内容能够移动的总距离/bar能够移动的总距离
+            //内容要移动的距离 = 内容能够移动的总距离/bar能够移动的总距离*bar当前移动的距离
+            //rate = 内容能够移动的总距离/bar能够移动的总距离
+            var rate = (content.offsetHeight - box.offsetHeight) / (box.offsetHeight - bar.offsetHeight);
+            //内容要移动的距离 = rate*bar当前移动的距离
+            content.style.top = -rate * barY + "px";//运动方向是相反的
+
+
+        };
+    };
+
+    //鼠标弹起后 bar就不要跟着走了
+    document.onmouseup = function () {
+        document.onmousemove = null;
+    };
+</script>
+</body>
+</html>

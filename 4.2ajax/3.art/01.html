@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+<div id="box"></div>
+
+<script type="text/javascript" src="template.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	box = document.getElementById('box');
+	var data = {
+		title: '图书信息',
+		books: ['水浒传','三国演义','红楼梦','西游记']
+	};
+
+	function success() {
+		var title = data.title;
+		var books = data.books;
+		var tag = '<h1>'+title+'</h1>';
+		for ( var i = 0 ; i < books.length ; i++ ) {
+			tag += '<div>'+books[i]+'</div>' ;
+		}
+		box.innerHTML = tag;
+	}
+	success(data);
+}
+</script>
+
+
+	
+</body>
+</html>

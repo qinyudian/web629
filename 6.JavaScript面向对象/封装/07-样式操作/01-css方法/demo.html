@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            color: blue;
+        }
+    </style>
+    <script src="./js/Itcast.core.js"></script>
+    <script src="./js/itcast.ctor.js"></script>
+    <script src="./js/Itcast.dom.js"></script>
+    <script src="./js/Itcast.event.js"></script>
+    <script>
+        Itcast.fn.extend({
+            css: function ( name, value ) {
+                if ( value === undefined ) {
+                    // 一个参数
+                    if ( typeof name === 'string' ) {
+                        // 获得对应的样式
+                        return this[ 0 ].style[ name ] || window.getComputedStyle( this[ 0 ] )[ name ];
+                    } else {
+                        // 设置多个样式
+                        return this.each( function () {
+                            // name 是一个对象
+                            var that = this;
+                            Itcast.each( name, function ( k, v ) {
+                                that.style[ k ] = v;
+                            });
+                        });
+                    }
+                } else {
+                    // 设置一个样式
+                    return this.each(function () {
+                        this.style[ name ] = value;
+                    });
+                }
+            }
+
+        })
+    </script>
+</head>
+<body>
+    
+</body>
+<script>
+    I( '<div>123</div>' ).appendTo( 'body' ).css( 'border', '1px dashed red' ).css({
+        width: '200px',
+        height: '100px'
+    }).mouseover( function () {
+        this.style.backgroundColor = 'red';
+    }).mouseout( function () {
+        this.style.backgroundColor = '';
+    });
+
+
+    console.log( 'color = ' + I( 'div' ).css( 'color' ) )
+</script>
+</html>

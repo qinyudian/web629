@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="lib/vue-2.4.0.js"></script>
+	<style type="text/css">
+		* {padding: 0;margin: 0;}
+		li {
+			width:  100%;
+			border: 1px dashed #999;
+			margin: 5px;
+			padding: 0 0 0 5px; 
+			line-height: 30px; 
+		}
+
+		li:hover {
+			background-color: hotpink;
+			transition: all 0.8s ease;
+		}
+
+		.v-enter,
+		.v-leave-to {
+			opacity:  0;
+			transform: translateY(80px);
+		}
+		.v-enter-active,
+		.v-leave-active {
+			transition: all 0.6s ease;
+		}
+
+		.v-move {
+			transition: all 0.6s ease;
+		}
+		.v-leave-active {
+			position: absolute;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="app">
+		<div>
+			<label>
+				ID:
+				<input type="text" name="" v-model="id">
+			</label>
+			<label>
+				name:
+				<input type="text" name="" v-model="name">
+			</label>
+			<label>
+				<input type="button" value="添加" name="" @click="add">
+			</label>
+		</div>
+		
+		<transition-group tag="ul" appear>
+			<li v-for=" ( item , i ) in list " :key="item.id" @click="del(i)" >
+				<span>{{ item.id }}</span>
+				<span>{{ item.name }}</span>
+			</li>	
+		</transition-group>
+			
+		
+	</div>
+</body>
+<script type="text/javascript">
+var vm = new Vue({
+	el: '#app',
+	data: {
+		id: '',
+		name: '',
+		list: [
+			{ id: 1 , name: '张三1' },
+			{ id: 2 , name: '张三2' },
+			{ id: 3 , name: '张三3' },
+			{ id: 4 , name: '张三4' },
+			{ id: 5 , name: '张三5' }
+		]
+	},
+	methods:{
+		add(){
+			this.list.push({
+				id: this.id,
+				name: this.name
+			});
+			this.id = this.name = '';
+		},
+		del(i){
+			this.list.splice(i,1);
+		}
+	}
+});
+</script>
+</html>

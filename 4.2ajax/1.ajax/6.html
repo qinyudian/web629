@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+</head>
+<body>
+
+<div id="container">
+	<div>
+		图书编码：<input type="text" name="code" id="code">
+		<input type="button" value="按钮" id="btn">
+	</div>
+	<div id="info"></div>
+</div>
+
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var btn = document.getElementById('btn');
+	btn.onclick = function(){
+		var code = document.getElementById('code').value;
+		$.ajax({
+			//type : 'get',
+			type : 'post',
+			url : '6.php',
+			data : {code:code},
+			dataType : 'json',
+			success : function(data){
+				var info = document.getElementById('info');
+				if( data.flag == 0 ) {
+					info.innerHTML = '没有这本书';
+				}else {
+					var tag = '<ul><li>'+data.bookname+'</li><li>'+data.author+'</li><li>'+data.desc+'</li></ul>';
+					info.innerHTML = tag;
+				}
+			}	
+		});
+	}
+
+}
+</script>
+	
+</body>
+</html>

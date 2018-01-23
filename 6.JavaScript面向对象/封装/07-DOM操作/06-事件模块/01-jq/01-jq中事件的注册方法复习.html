@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../../../../资料/jquery/jquery-3.1.0/jquery-3.1.0.js"></script>
+    <script>
+        $(function () {
+
+            $( '<div style="width: 200px; height: 100px; border: 1px dashed blue;"></div>' )
+                .appendTo( 'body' )
+                .on( 'mouseover', function () {
+                    this.style.backgroundColor = 'red';
+                    // $( this ).css()
+                }).mouseout(function () {
+                    this.style.backgroundColor = '';
+                });
+        })
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

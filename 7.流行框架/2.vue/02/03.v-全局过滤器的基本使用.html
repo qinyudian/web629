@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<script src="./lib/vue-2.4.0.js"></script>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+<div id="app">
+	<p>{{ msg | msgFormat( '疯狂+1' , '123' ) | test() }}</p>
+</div>
+<script>
+Vue.filter('msgFormat',function( msg , arg1 , arg2  ){
+	return msg.replace( /单纯/g, arg1 + arg2 );
+});
+
+Vue.filter('test',function(msg){
+	return msg + '=========================';
+});
+
+var vm = new Vue({
+	el: '#app',
+	data: {
+		msg: '我是一个特别单纯的女人，傻傻的我，还单纯的问别人，谁是世界上最单纯的女人'
+	}
+});
+</script>				
+</body>
+</html>

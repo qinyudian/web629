@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            border: 1px dashed blue;
+        }
+    </style>
+    <script src="./js/Itcast.core.js"></script>
+    <script src="./js/itcast.ctor.js"></script>
+    <script src="./js/Itcast.dom.js"></script>
+    <script src="./js/Itcast.event.js"></script>
+    <script SRC="./js/Itcast.style.js"></script>
+    <script>
+        Itcast.fn.extend({
+            attr: function ( name, value ) {
+                if  ( value === undefined ) {
+                    return this[ 0 ].getAttribute( name );
+                } else {
+                    return this.each( function () {
+                        this.setAttribute( name, value );
+                    });
+                }
+            },
+            prop: function ( name, value ) {
+                if  ( value === undefined ) {
+                    return this[ 0 ][ name ];
+                } else {
+                    return this.each( function () {
+                        this[ name ] = value;
+                    });
+                }
+            }
+        });
+
+
+        Itcast.each( {
+            html: 'innerHTML',
+            text: 'innerText',
+            val: 'value'
+        }, function ( k, v ) {
+            Itcast.fn[ k ] = function ( value ) {
+                if ( value === undefined ) {
+                    return this[ 0 ][ v ];
+                } else {
+                    return this.each( function () {
+                        this[ v ] = value;
+                    });
+                }
+            };
+        });
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+<script>
+    
+    // html
+    I( '<div></div>' )
+        .appendTo( 'body' )
+        .html( '123<span style="color: red">456</span>789' );
+    
+
+    // text
+    I( '<div></div>' )
+        .appendTo( 'body' )
+        .text( '123<span style="color: red">456</span>789' );
+    
+    // val
+    I( '<input type="text">' )
+        .appendTo( 'body' )
+        .val( '今天天气很好' );
+
+
+</script>
+</html>

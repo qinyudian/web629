@@ -1,0 +1,56 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+ 	<meta charset="UTF-8">
+ 	<title>多次发送请求查询天气</title>
+ </head>
+ <body>
+<div id="container">
+    城市名称：<input type="text" id="city">
+    <input type="button" value="查询" id="query">
+    <div id="info"></div>
+</div>
+
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#query').click(function(){
+		var city = $('#city').val();
+		$.ajax({
+			type : 'get',
+			url: 'citycode.php',
+			data : {'cityName':city},
+			dataType : 'json',
+			success : function(data){
+				$.ajax({
+					type : 'get',
+					url: 'cityweather.php',
+					data : {'cityCode':data.cityCode},
+					dataType : 'json',
+					success : function(data){
+						data = data.retData;
+						var tag = '<ul>'+
+									'<li>风向：'+data.WD+'</li>'+
+									'<li>风级：'+data.WS+'</li>'+
+									'<li>海拔：'+data.altitude+'</li>'+
+									'<li>日期：'+data.date+'</li>'+
+									'<li>最高温度：'+data.h_tmp+'</li>'+
+									'<li>最低温度：'+data.l_tmp+'</li>'+
+									'<li>平均温度：'+data.temp+'</li>'+
+									'<li>日出时间：'+data.sunrise+'</li>'+
+									'<li>日落时间：'+data.sunset+'</li>'+
+									'<li>经度：'+data.longitude+'</li>'+
+									'<li>维度：'+data.latitude+'</li>'+
+								'</ul>';
+						$('#info').html(tag);	
+					}
+				});
+			}
+		});
+	});
+})	
+</script>
+
+ 	
+ </body>
+ </html>

@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .black {
+            background-color: black;
+        }
+    </style>
+    <script src="./js/Itcast.core.js"></script>
+    <script src="./js/itcast.ctor.js"></script>
+    <script src="./js/Itcast.dom.js"></script>
+    <script src="./js/Itcast.event.js"></script>
+    <script SRC="./js/Itcast.style.js"></script>
+    <script>
+        Itcast.fn.extend({
+            addClass: function ( name ) {
+                return this.each(function () {
+                    if ( this.className ) {
+                        this.className += ' ' + name;
+                    } else {
+                        this.className = name;
+                    }
+                });
+            },
+            removeClass: function ( name ) {
+                // 将 this 中 的 className 属性中 与 name 同名的 样式去掉
+                return this.each( function () {
+                    var names = this.className && this.className.split( ' ' ) || [];
+
+                    // filter 方法, map 方法
+                    // indexOf
+                    // var newNames = names.filter( function ( v, i ) {
+                    //     return v != name;
+                    // });
+
+                    var newNames = names.map( function ( v, i ) {
+                        if ( v != name ) {
+                            return v;
+                        }
+                    });
+
+
+                    this.className = newNames.join( ' ' );
+                });
+            },
+            hasClass: function ( name ) {
+                // 判断 第 0 个元素是否含有
+                var dom = this[ 0 ];
+                var names = dom.className && dom.className.split( ' ' ) || [];
+                for ( var i = 0; i < names.length; i++ ) {
+                    if ( names[ i ] == name ) {
+                        return true;
+                    }
+                }
+                return false;
+            },
+            toggleClass: function ( name ) {
+                return this.each( function () {
+                    var iObj = Itcast( this );
+                    if ( iObj.hasClass( name ) ) {
+                        iObj.removeClass(  name );
+                    } else {
+                        iObj.addClass( name );
+                    }
+                });
+            }
+ 
+        });
+    </script>
+</head>
+<body>
+    <div class="c1 c cc c2 c c3 c4 c"></div>
+    <div class="c"></div>
+    <input type="button" value=" 点击变黑 " id="btn">
+</body>
+<script>
+    // I( 'div' ).removeClass( 'c' )
+
+    // console.log( I( 'div' ).hasClass( 'ccc' ) )
+
+    I( '#btn' ).click( function () {
+
+        I( 'body' ).toggleClass( 'black' );
+
+    })
+
+</script>
+</html>

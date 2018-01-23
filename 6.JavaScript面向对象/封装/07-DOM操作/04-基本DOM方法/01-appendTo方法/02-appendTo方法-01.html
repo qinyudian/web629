@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+    <script src="js/itcast.core.js"></script>
+    <script src="js/itcast.dom.js"></script>
+    <script src="js/itcast.ctor.js"></script>
+    <script>
+        // 这是操作一个元素
+        /*Itcast.fn.appendTo = function( dom ){
+            dom.appendChild( this[ 0 ] );
+            return this;
+        }*/
+        // 这是操作多个元素
+        Itcast.fn.appendTo = function( dom ) {
+            return this.each( function(i,v) {
+                dom.appendChild( this );
+            });
+        }
+    </script>
+
+    <script>
+        I(
+                '<div style="border: 1px solid red ; padding: 20px; margin: 10px;"></div>'+
+                '<div style="border: 1px solid red ; padding: 20px; margin: 10px;"></div>'+
+                '<div style="border: 1px solid red ; padding: 20px; margin: 10px;"></div>'+
+                '<div style="border: 1px solid red ; padding: 20px; margin: 10px;"></div>'+
+                '<div style="border: 1px solid red ; padding: 20px; margin: 10px;"></div>'+
+                '<div style="border: 1px solid red ; padding: 20px; margin: 10px;"></div>'
+        ).appendTo( document.body );
+
+
+
+
+    </script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .red { color: red; }
+        .pink { color: lightpink; }
+    </style>
+</head>
+<body>
+
+<ul id="list">
+    <li>aaa</li>
+    <!--注释-->
+    <li>bbb</li>
+    <li>ccc</li>
+    <li>ddd</li>
+</ul>
+
+<script>
+    var list = document.getElementById('list');
+    var child_nodes = list.childNodes;
+    var j = 0;
+    for ( var i = 0 ; i < child_nodes.length ; i++ ) {
+        if( child_nodes[i].nodeType === 1 ) {
+
+            if( j % 2 === 0 ) {
+                child_nodes[i].setAttribute('class','red');
+            }else{
+                child_nodes[i].setAttribute('class','pink');
+            }
+
+        }
+
+        j++;
+    }
+
+
+</script>
+
+</body>
+</html>

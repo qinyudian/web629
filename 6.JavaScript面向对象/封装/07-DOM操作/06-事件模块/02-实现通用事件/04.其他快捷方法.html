@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./js/Itcast.core.js"></script>
+    <script src="./js/itcast.ctor.js"></script>
+    <script src="./js/Itcast.dom.js"></script>
+    <script>
+        Itcast.fn.extend({
+
+            on: function ( eventName, callback ) {
+                // 遍历 this. 给每一个 dom 元素都绑定事件
+                return this.each(function () {
+                    this.addEventListener( eventName, callback );
+                });
+
+            },
+            off : function( eventName, callback ){
+                return this.each(function(){
+                    this.removeEventListener( eventName , callback );
+                });
+            }
+
+
+            /*abort,blur,cancel,canplay,canplaythrough,change,click,close,contextmenu,cuechange,dblclick,drag,dragend,dragenter,dragleave,dragover,dragstart,drop,durationchange,emptied,ended,error,focus,input,invalid,keydown,keypress,keyup,load,loadeddata,loadedmetadata,loadstart,mousedown,mouseenter,mouseleave,mousemove,mouseout,mouseover,mouseup,mousewheel,pause,play,playing,progress,ratechange,reset,resize,scroll,seeked,seeking,select,show,stalled,submit,suspend,timeupdate,toggle,volumechange,waiting,auxclick,gotpointercapture,lostpointercapture,pointercancel,pointerdown,pointerenter,pointerleave,pointermove,pointerout,pointerover,pointerup,beforecopy,beforecut,beforepaste,copy,cut,paste,search,selectstart,wheel,webkitfullscreenchange,webkitfullscreenerror*/
+
+        })
+
+
+        Itcast.each( ('abort,blur,cancel,canplay,canplaythrough,' +
+                        'change,click,close,contextmenu,cuechange,dblclick,' +
+                        'drag,dragend,dragenter,dragleave,dragover,dragstart,' +
+                        'drop,durationchange,emptied,ended,error,focus,input,' +
+                        'invalid,keydown,keypress,keyup,load,loadeddata,' +
+                        'loadedmetadata,loadstart,mousedown,mouseenter,' +
+                        'mouseleave,mousemove,mouseout,mouseover,mouseup,' +
+                        'mousewheel,pause,play,playing,progress,ratechange,' +
+                        'reset,resize,scroll,seeked,seeking,select,show,stalled,' +
+                        'submit,suspend,timeupdate,toggle,volumechange,waiting,' +
+                        'auxclick,gotpointercapture,lostpointercapture,pointercancel,' +
+                        'pointerdown,pointerenter,pointerleave,pointermove,pointerout,' +
+                        'pointerover,pointerup,beforecopy,beforecut,beforepaste,copy,' +
+                        'cut,paste,search,selectstart,wheel,webkitfullscreenchange,' +
+                        'webkitfullscreenerror'
+                    ).split(','),function(i,v){
+            Itcast.fn[v] = function( callback ){
+                return this.on( v , callback );
+            }
+        });
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+<script>
+    var data = [
+
+        { name: 'jim1', age: 19, gender: '男' },
+        { name: 'jim2', age: 9, gender: '女' },
+        { name: 'jim3', age: 29, gender: '女' },
+        { name: 'jim4', age: 39, gender: '男' },
+        { name: 'jim5', age: 49, gender: '男' },
+        { name: 'jim6', age: 59, gender: '女' },
+        { name: 'jim7', age: 69, gender: '男' },
+        { name: 'jim8', age: 79, gender: '男' }
+
+    ];
+    var fun ;
+    var color;
+    I( '<table width="200" border="1"><tbody>'+ I.map(data,function(item){
+        return '<tr>'+ I.map(item,function(v,i){
+            return '<td>'+ v +'</td>';
+        }).join('\n') + '</tr>';
+    }).join('\n') + '</tbody></table>').appendTo('body');
+
+    I( 'table tr').mouseover(function(){
+        this.style.backgroundColor = 'pink';
+    }).mouseout(fun = function(){
+        this.style.backgroundColor = '#000';
+    }).off('mouseout',fun).mousedown(function(){
+        color = this.style.backgroundColor;
+        this.style.backgroundColor = 'red';
+    }).mouseup(function(){
+        this.style.backgroundColor = color;
+    });
+
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

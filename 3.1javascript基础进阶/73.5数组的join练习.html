@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<script>
+    //将一个字符串数组输出为用|分割的字符串，如['刘备'，‘张飞’，‘关羽’]变为‘刘备|张飞|关羽’。（两种方式）
+    var arr = ['刘备','张飞','关羽'];
+    //方法一 (利用自己定义的函数实现用|分割字符串)
+    /*var spea = '|';
+    function getArr( arr ) {
+        var str = arr[0] ;
+        for ( var i = 1 ; i <= arr.length - 1 ; i++ ) {
+            str = str + spea + arr[i];
+        }
+        return str;
+    }
+    console.log( getArr(arr) );*/
+    //方法二 （利用数字自带的函数(join)实现用|分割字符串）
+    console.log( arr.join('|') );
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+         span { color: red; }
+    </style>
+</head>
+<body>
+
+<input type="text" name="" id="textName"/><span></span><br/>
+<input type="password" name="" id="textPsd"/>
+<span></span><br/>
+<input type="button" name="" value="注册" id="tbn"/>
+
+<script>
+    var textName = document.getElementById( 'textName' );
+    var textPsd = document.getElementById( 'textPsd' );
+    //用户名验证
+    textName.onkeyup = function() {
+        if ( textName.value.length < 3 || textName.value.length > 6 ) {
+            this.nextElementSibling.innerText = '请输入3-6位字母';
+        }else {
+            this.nextElementSibling.innerText = '';
+        }
+    };
+    //密码验证
+    textPsd.onkeyup = function() {
+        if ( textPsd.value.length < 3 || textPsd.value.length > 6 ) {
+            //this.nextElementSibling.value = '密码必须在3-6位之间';
+            nexntElementSibling(this).value = '密码必须在3-6位之间';
+        }else {
+            //this.nextElementSibling.value = '';
+            nexntElementSibling(this).value = '';
+
+        }
+    };
+    //兼容问题处理
+    function nexntElementSibling(element) {
+        if ( element.nextElementSibling ) {
+            return element.nextElementSibling;
+        }else {
+            var next = element.nextSibling;
+            while ( next && next.nodeType !== 1 ) {
+                next = next.nextSibling;
+            }
+            return next;
+        }
+    };
+
+</script>
+
+
+</body>
+</html>

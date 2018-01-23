@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="style/index.css"/>
+    <script src="js/jquery-1.12.2.min.js"></script>
+    <script src="js/jquery.fullPage.min.js"></script>
+
+</head>
+<body>
+
+<div id="fullpage">
+    <div class="section">第一屏</div>
+    <div class="section">第二屏</div>
+    <div class="section">第三屏</div>
+    <div class="section">第四屏</div>
+</div>
+
+<script>
+    $(function(){
+        $('#fullpage').fullpage({
+            //内容是否垂直居中
+            verticalCentered: true,
+            //绑定菜单，设定的相关属性与 anchors 的值对应后，菜单可以控制滚动
+            anchors: ['page1', 'page2', 'page3', 'page4'],
+            navigation : true,
+            navigationTooltips: ['首页','首页1','首页2','首页3'],
+            //每一屏的颜色
+            sectionsColor:['#00ccff','#00ff7e','#ffe63b','#ff00d2'],
+            //是否使用 CSS3 transforms 滚动
+            css3:true,
+            //是否使用键盘方向键导航
+            keyboardScrolling : true,
+            //滚动到某一屏后的回调函数，接收 anchorLink 和 index 两个参数，anchorLink 是锚链接的名称，index 是序号，从1开始计算
+            afterLoad:function(anchorLink,index){
+
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

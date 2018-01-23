@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script src="./js/Itcast.core.js"></script>
+<script src="./js/itcast.ctor.js"></script>
+<script src="./js/Itcast.dom.js"></script>
+
+<script>
+    var push = [].push;
+
+    Itcast.fn.extend({
+        // on
+        on : function( eventName, callback ){
+            return this.each(function(){
+                this.addEventListener( eventName , callback );
+            })
+        }
+    });
+
+
+</script>
+
+<script>
+    I(
+            '<div style="width: 200px; height: 100px; background-color:orangered; margin-bottom: 10px;">我是第一个div</div>' +
+            '<div style="width: 200px; height: 100px; background-color:orangered; margin-bottom: 10px;">我是第一个div</div>' +
+            '<div style="width: 200px; height: 100px; background-color:orangered; margin-bottom: 10px;">我是第一个div</div>' +
+            '<div style="width: 200px; height: 100px; background-color:orangered; margin-bottom: 10px;">我是第一个div</div>' +
+    '').appendTo(document.body)
+            .on('mouseover',function(){
+                this.style.backgroundColor = 'pink';
+            })
+            .on('mouseout',function(){
+                this.style.backgroundColor = 'orangered';
+            });
+
+
+
+
+</script>
+
+
+</html>

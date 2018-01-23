@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="key"><br/>
+    <input type="text" id="value"><br />
+    <input type="button" id="btn" value="按钮">
+</body>
+<script>
+    /*var o5 = {};
+    o5.name = '汤姆';
+    o5.age = '20';
+    o5.gender = '女';
+    o5.sayHello = function(){};*/
+    function id ( idName ) {
+        return document.getElementById( idName );
+    } 
+    var key = id( 'key' );
+    var value = id( 'value' );
+    var btn = id( 'btn' );
+
+    var o = {};
+
+    btn.onclick = function () {
+        // 给全局对象 o 添加成员
+        o[ key.value ] = value.value;
+    }
+
+</script>
+</html>

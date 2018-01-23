@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            width: 300px;
+            /* height: 100px; */
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid blue;
+        } 
+        p {
+            border: 1px dotted red;
+            margin: 5px;
+            padding: 0;
+        }
+    </style>
+</head>
+<script src="./js/Itcast.core.js"></script>
+<script src="./js/Itcast.dom.js"></script>
+<script src="./js/Itcast.ctor.js"></script>
+<script>
+    var push = [].push;
+    Itcast.extend({
+        // 数组去重
+        unique : function( iObj ){
+            var tmp = [],
+                newIObj = Itcast();
+            for ( var i = 0 ; i < iObj.length ; i++ ) {
+                if ( tmp.indexOf( iObj[i] ) == -1 ) {
+                    tem.push( iObj[i] );
+                }
+            }
+            push.apply( newIObj , tmp );
+            return newIObj;
+        }
+    });
+
+    Itcast.fn.extend({
+        // 寻找父元素
+        parent : function(){
+            var iObj= Itcast();
+            push.apply( iObj, this.map(function(v,i){
+                return v.parentNode;
+            }));
+            iObj = Itcast.unique( iObj );
+            return this.pushStack( iObj );
+        }
+    });
+
+</script>
+<body>
+    <div>
+        <p>p</p>
+        <p>p</p>
+        <p>p</p>
+        <p>p</p>
+    </div>
+    <div>
+        <p>p</p>
+        <p>p</p>
+        <p>p</p>
+    </div>
+    <div>
+        <p>p</p>
+    </div>
+    <div>
+        <p>p</p>
+    </div>
+</body>
+<script>
+
+    var obj = I('p').parent();
+
+
+
+
+</script>
+</html>

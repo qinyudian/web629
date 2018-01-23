@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="ajax2.js"></script>
+	<style type="text/css">
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	#box {
+		width: 400px;
+		min-height: 300px;
+		margin: auto;
+		background-color: pink;
+	}
+	</style>
+	<script type="text/javascript">
+	ajax({
+		url : 'jsonp.php',
+		dataType : 'jsonp',
+		data : { username : '张三' , password : '123'},
+		jsonp: 'cb',
+		jsonpCallback : 'abc',
+		success : function(data){ // 这里的data是形参
+			console.log(data.username);
+		}
+
+	})
+
+
+	</script>
+</head>
+<body>
+
+<div id="box"> 
+	<input type="text" name="" id="keyword">
+	<input type="button" value="" id="">
+
+</div>
+
+
+	
+</body>
+</html>

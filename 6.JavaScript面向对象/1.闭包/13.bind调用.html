@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div></div>
+</body>
+<script>
+/*    var dv = document.getElementsByTagName('div')[0];
+    dv.style.border = '1px solid red';
+    dv.style.width = '100px';
+    dv.style.height = '50px';
+*/
+/*
+    var get = document.getElementsByTagName;
+    var dv = get.call( document,'div' )[0];
+    dv.style.border = '1px solid yellow';
+    dv.style.width = '100px';
+    dv.style.height = '50px';
+*/
+    var tmpFn = document.getElementsByTagName;
+    var get = tmpFn.bind( document ); // 返回的还是函数
+    var dv = get( 'div' )[0];
+    dv.style.border = '1px solid red';
+    dv.style.width = '100px';
+    dv.style.height = '50px';
+
+</script>
+</html>

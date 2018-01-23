@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 300px;
+            height: 500px;
+            border: 1px solid red;
+            margin: 100px;
+            position: relative;
+        }
+
+        .content {
+            padding: 5px 18px 5px 5px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .scroll {
+            width: 18px;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: #eee;
+        }
+
+        .bar {
+            /*height: 100px;*/
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: red;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <div class="content" id="content">
+        我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我
+        我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我
+        我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我
+        我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我是文字内容我
+    </div>
+    <div class="scroll">
+        <div class="bar" id="bar"></div>
+    </div>
+</div>
+
+<script>
+window.onload = function(){
+    //找人
+    var bar = document.getElementById('bar');
+    var box = document.getElementById('box');
+    var content = document.getElementById('content');
+    //需求：拖动滚动条 让滚动条跟着鼠标走 内容也要按照比例移动
+    //1.1按照比例计算bar的高度
+    //bar的高度 / 侧边栏的高度 = 显示出来的内容的高度 / 内容的整体高度
+    //bar的高度 / box的高度   = box的高度          / content的高度
+    //bar的高度 = box的高度 / content的高度 * box的高度
+    if( content.offsetHeight > box.offsetHeight )
+    {
+        bar.style.height = box.offsetHeight / content.offsetHeight * box.offsetHeight + 'px';
+    }else{
+        bar.style.height = 0 ;
+    }
+    //2.鼠标在bar上按下bar 变为可以拖动的状态 鼠标移动的时候 让bar跟着鼠标走
+    bar.onmousedown = function(event){
+        var event = event || window.event;
+        //鼠标在页面中的坐标
+        var pageY = event.pageY || event.clientY + document.documentElement.scrollHeight;
+        //获取鼠标在bar上按下时在bar中的位置
+        var barBoxY = pageY - box.offsetTop - bar.offsetTop;
+        document.onmousemove = function(){
+            var event = event || window.event;
+            //鼠标在页面中的坐标
+            var pageY = event.pageY || event.clientY + document.documentElement.scrollHeight;
+            //鼠标在盒子中的坐标
+            var barY = pageY - box.offsetTop;
+            barY = barY - barBoxY;
+            //3.限制运动范围
+            if( barY < 0 ) { barY = 0 ; }
+            if( barY > box.offsetHeight - bar.offsetHeight ){
+                barY = box.offsetHeight - bar.offsetHeight ;
+            }
+            bar.style.top = barY + 'px';
+            //清除选中文字
+            window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+            //4.拖动滚动条 内容跟着滚动
+            /**
+             * 内容要移动的距离 / bar当前移动的距离 = 内容能够移动的总距离 / bar能够移动的总距离 ；
+             * 内容要移动的距离 = 内容能够移动的总距离 / bar能够移动的总距离 * bar当前移动的距离 ；
+             * rate = 内容能够移动的总距离 / bar能够移动的总距离 ;
+             * rate = ( content的高度 - box的高度 ) / ( box的高度 - bar的高度 );
+             */
+            var rate = ( content.offsetHeight - box.offsetHeight ) / ( box.offsetHeight - bar.offsetHeight );
+            content.style.top = -rate*barY + 'px';
+        }
+    };
+    //5.鼠标弹起后 bar不要跟着走啦
+    document.onmouseup = function(){
+        document.onmousemove = null;
+    }
+}
+
+</script>
+
+
+
+</body>
+</html>

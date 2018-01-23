@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>todos</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <section class="todoapp">
+    <header class="header">
+        <h1>todos</h1>
+        <input class="new-todo" name="new-todo" placeholder="What needs to be done?" autofocus>
+    </header>
+    <section class="main">
+      <input class="toggle-all" type="checkbox">
+      <label for="toggle-all">Mark all as complete</label>
+      <ul class="todo-list">
+        
+        <!--以下样式要使用jQuery实现动态生成标签和添加类名 -->
+        
+         <!-- 已完成任务
+          <li class="completed">
+             <div class="view">
+               <input class="toggle" type="checkbox" checked>
+               <label>Taste JavaScript</label>
+               <button class="destroy"></button>
+             </div>
+             <input class="edit" value="Create a TodoMVC template">
+           </li>
+         
+           编辑任务
+           <li class="editing">
+             <div class="view">
+               <input class="toggle" type="checkbox">
+         
+               <label>Buy a unicorn</label>
+               <button class="destroy"></button>
+             </div>
+             <input class="edit" value="Rule the web">
+           </li>
+           
+           正在做的任务
+           <li class="todo">
+             <div class="view">
+               <input class="toggle" type="checkbox">
+               <label>Buy a unicorn</label>
+               <button class="destroy"></button>
+             </div>
+             <input class="edit" value="Rule the web">
+           </li> -->
+
+       </ul>
+    </section>
+    <footer class="footer">
+      <span class="todo-count"><strong id="count">0</strong> item left</span>
+      <button class="clear-completed">Clear completed</button>
+    </footer>
+  </section>
+
+
+<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+  var lilen = null ;
+  var keyCode= null ;
+  var newText = null ;
+  var cked = 0;
+  // 发布任务编辑器事件
+  $('.header').keydown(function (e) {
+      keyCode = e.keyCode;//键盘按下后的键对应的键值
+      newText = $('.new-todo').val();
+      // 按下回车键 事件
+      if ( keyCode == 13 ) {
+        // 判断 keyCode 为空事件，处理程序
+        if ( $.trim(newText) == '' ) {
+          alert('内容不能为空');
+          return ;
+        }
+        var tag = '<li class="todo">'+
+                    '<div class="view">'+
+                      '<input class="toggle" type="checkbox">'+
+                      '<label>'+newText+'</label>'+
+                      '<button class="destroy"></button>'+
+                    '</div>'+
+                    '<input class="edit" value="'+newText+'">'+
+                  '</li>';
+        $('.todo-list').prepend(tag);
+        $('.new-todo').val('');
+        // 获取li的个数
+        lilen = $('.todo-list').find('li.todo').length; 
+        // 项目角标 count
+        $('#count').html(lilen);
+      }
+  });
+
+  // 全选事件1
+  // 获取 todo-list 下面所有的 :checkbox 的值
+  $('.toggle-all').on('click',find(':checkbox'),function(){
+    // alert('4');  // 弹了4次4 为什么？
+    cked = $(this).prop("checked");//保存当前复选框的选中状态
+    //获取 ul 中所有的复选框
+    $(".todo-list").find(":checkbox").prop("checked",cked);
+    if ( cked ) {
+      $(".todo-list").find('li').attr('class','completed');
+      $('#count').html(0);
+    }else {
+      $(".todo-list").find('li').attr('class','todo');  
+      lilen = $('.todo-list').find('li.todo').length;  
+      $('#count').html(lilen);  
+    }
+    
+  });
+  // 全选事件2
+  $('.todo-list').on('click',find(':checkbox'),function(){
+    var length1 =  $('.todo-list').find(':checkbox').length;
+    var length2 =  $('.todo-list').find(':checked').length;
+    if ( length1 == length2 ) {
+      // 都选中了 
+      $('.toggle-all').prop('checked',true);
+      $('#count').html(0);
+    }else {
+      $('.toggle-all').prop('checked',false);
+      $('#count').html(lilen); 
+    }
+
+  });
+
+  
+  // 删除事件
+  $('.todo-list').on('click','.destroy',function(){
+    $(this).parent().parent().remove();//删除li
+    lilen -= 1;
+    // 项目角标 count
+    $('#count').html(lilen);
+    
+  });
+
+  // 清除已完成的任务 completed
+  $('.footer').on('click','.clear-completed',function(){ 
+    // lilen -= $('.todo-list>.completed').length;
+    // // 项目角标 count
+    // $('#count').html(lilen); 
+    $('.todo-list>.completed').remove();
+  });
+
+  // 双击可编辑事件
+  $('.todo-list').on('dblclick','label',function(){
+    var $parent = $(this).parent().parent();
+    $('.todo-list>li').attr('class','todo');
+    $parent.attr('class','editing');
+  });
+  $('.todo-list').on('keydown','.editing',function(e){
+    keyCode = e.keyCode;
+    newText = $(this).find('.edit').val();
+    if ( keyCode == 13 ) {
+      if ( $.trim(newText) == '' ) {
+        alert('任务不能为空');
+        return false;
+      }
+      $('.editing').find('label').html(newText);
+      $('.editing').attr('class','todo');
+    }
+  });
+  // 已完成任务事件 completed
+  $('.todo-list').on('click','.toggle',function(){
+    var $parent = $(this).parent().parent();
+    if ( $(this).is(':checked') ) {
+      $parent.attr('class','completed');      
+    }else{
+      $parent.attr('class','todo');
+    }
+    lilen = $('.todo-list').find('li.todo').length;
+    $('#count').html(lilen); 
+    
+  });
+
+
+
+
+})
+</script>
+
+</body>
+</html>
+
+
+
+ 

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<script src="vue.min.js"></script>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+<!-- 注意： v-for 循环的时候，key 属性只能使用 number获取string -->
+<!-- 注意： key 在使用的时候，必须使用 v-bind 属性绑定的形式，指定 key 的值 -->
+<!-- 在组件中，使用v-for循环的时候，或者在一些特殊情况中，如果 v-for 有问题，必须 在使用 v-for 的同时，指定 唯一的 字符串/数字 类型 :key 值 -->	
+	<div id="app">
+		<input type="text" name="" v-model="id">
+		<input type="text" name="" v-model="name">
+		<button @click="btn">提交</button> <br><br>
+		<div v-for=" ( item,i ) in list " :key=" item.id ">
+			<input type="checkbox" name="">id：{{ item.id }} ; 名字：{{ item.name }} 
+		</div>
+	</div>
+</body>
+
+<script>
+	var vm = new Vue({
+		el: '#app',
+		data: {
+			id: '',
+			name: '',
+			list: [
+				{ id: 1, name: '张三1' },
+				{ id: 2, name: '张三2' },
+				{ id: 3, name: '张三3' },
+				{ id: 4, name: '张三4' },
+				{ id: 5, name: '张三5' },
+				{ id: 6, name: '张三6' },
+				{ id: 7, name: '张三7' },
+				{ id: 8, name: '张三8' },
+				{ id: 9, name: '张三9' }
+			]
+		},
+		methods:{
+			btn(){
+				this.list.unshift({
+					id: this.id,
+					name: this.name
+				});
+			}
+		}
+	});
+</script>
+
+
+</html>

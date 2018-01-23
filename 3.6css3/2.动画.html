@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin: 100px;
+
+        }
+        div:hover {
+            /*animation: move 2s ease-in-out 2s infinite alternate;*/
+            animation: move 2s ease-in-out 2s 1 alternate forwards;
+        }
+        /*@keyframes move {
+            0%{
+                transform: translate(0,0);
+            }
+            50%{
+                transform: translate( 500px , 100px );
+            }
+            100%{
+                transform: translate( 900px );
+            }
+        }*/
+        @keyframes move {
+            form{
+                transform: translate(0,0);
+            }
+            50%{
+                transform: translate( 500px , 100px );
+            }
+            to{
+                transform: translate( 900px );
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+<div></div>
+
+
+
+
+</body>
+</html>

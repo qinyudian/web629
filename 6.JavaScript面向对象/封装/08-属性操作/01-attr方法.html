@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./js/Itcast.core.js"></script>
+    <script src="./js/itcast.ctor.js"></script>
+    <script src="./js/Itcast.dom.js"></script>
+    <script src="./js/Itcast.event.js"></script>
+    <script SRC="./js/Itcast.style.js"></script>
+    <script>
+        Itcast.fn.extend({
+            attr: function ( name, value ) {
+                if  ( value === undefined ) {
+                    return this[ 0 ].getAttribute( name );
+                } else {
+                    return this.each( function () {
+                        this.setAttribute( name, value );
+                    });
+                }
+            }
+
+
+        })
+
+    </script>
+</head>
+<body>
+    
+</body>
+<script>
+
+    I( '<img />' )
+    .appendTo( 'body' )
+    .attr( 'src', 'https://ss1.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=8c56d4a6d8c8a786a12a4c0e5708c9c7/5bafa40f4bfbfbed022d422371f0f736afc31f71.jpg' );
+
+
+    // alert( I( 'img' ).attr( 'src' ) );
+</script>
+</html>

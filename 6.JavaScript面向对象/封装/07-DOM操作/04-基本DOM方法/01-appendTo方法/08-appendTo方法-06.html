@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * { margin: 0; padding: 0; }
+    div {
+        padding: 10px;
+        border: 1px solid pink;
+        width: 100px;
+        height: 100px;
+        margin: 20px;
+    }
+        p { font-size: 20px; color: red; }
+    </style>
+</head>
+<body>
+<div>1</div>
+<div>2</div>
+<div>3</div>
+<div>4</div>
+<div>5</div>
+</body>
+    <script src="js/itcast.core.js"></script>
+    <script src="js/itcast.dom.js"></script>
+    <script src="js/itcast.ctor-2.js"></script>
+    <script>
+        //
+        var arr = [],
+            push = arr.push;
+        // 增加 end 方法
+        Itcast.fn.end = function(){
+            return this.prevObj || this;
+        };
+        // 链破坏操作封装成 方法
+        Itcast.fn.pushStack = function( newObj ){
+            newObj.prevObj = this;
+            return newObj;
+        };
+        Itcast.fn.appendTo = function( selector ) {
+            var iObj = Itcast( selector),
+                iNewObj = Itcast(), // 准备一个新的 itcast 对象（容器）
+                tmp, // 用来存储临时的数据
+                rest = [],
+                len = iObj.length,
+                i;
+            this.each( function() {
+                for( i = 0 ; i < len ; i++ ) {
+                    tmp = i === len-1 ? this : this.cloneNode(true);
+                    iObj[i].appendChild( tmp );
+                    rest.push( tmp );
+
+                }
+            });
+            push.apply( iNewObj,rest );
+            return this.pushStack( iNewObj );
+
+        }
+    </script>
+
+    <script>
+        // 1.加入传入的是一个dom元素
+        var i1 = I('<p>p</p>');
+        var i12 = i1.appendTo( I('div').get( 0 ) );
+
+        // 2.传入的是一个选择器
+        var i2 = I('<p>p2</p>');
+        var i21 = i2.appendTo( 'div' );
+
+        // 3.传入的也是一个 Itcast 对象
+        // 在P标签中加入 span 标签
+        var i3 = I( '<span style="background-color: mediumvioletred; color: #fff; margin-left: 5px;">span</span>');
+        var i31 = i3.appendTo( I('p') );
+
+    </script>
+</html>

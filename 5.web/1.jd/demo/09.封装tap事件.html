@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	
+	<div style="width: 500px; height: 500px; background-color: pink;"></div>
+
+	<script type="text/javascript" src="../js/common.js"></script>
+	<script type="text/javascript">
+	window.onload = function(){
+		var div = document.querySelector('div');
+		itcast.tap(div,function(e){
+			console.log(e);
+		});
+	}
+	</script>
+
+</body>
+</html>

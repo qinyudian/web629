@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+
+
+
+<script>
+    //将字符串数组的顺序进行反转（三种方式）
+    var arr = ['a','b','c','d','e','f','g'];
+    //方法一 （利用一个空数组实现反转）
+    /*function getReverse( arr ) {
+        var newArr = [];
+        for ( var i = arr.length - 1 ; i >= 0 ; i-- ) {
+            newArr[ newArr.length ] = arr[i];
+        }
+        return newArr;
+    }
+    console.log( getReverse(  arr ) );*/
+    //方法二 （在原数组上实现反转）
+    /*function getReverse( arr ) {
+        for ( var i = 0 ; i < arr.length - 1 ; i++ ){
+            var temp = arr[i];
+            arr[i] = arr[ arr.length - 1 - i ];//让arr[0]与arr[arr.length - 1 ]进行交换
+            arr[i+1] = temp;
+        }
+        return arr ;
+    }
+    console.log( getReverse( arr ) );*/
+    //方法三 （利用数组自带的一个函数）
+    console.log( arr.reverse() );
+
+
+</script>
+
+
+</body>
+</html>

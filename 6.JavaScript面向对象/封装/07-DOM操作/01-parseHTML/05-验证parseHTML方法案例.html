@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function parseHTML ( htmlStr ) {
+        var rest = [], i,
+            div = document.createElement( 'div' ); 
+        div.innerHTML = htmlStr; 
+        for ( i = 0; i < div.childNodes.length; i++ ) {
+            rest.push( div.childNodes[ i ] );
+        }
+        return rest
+    }
+
+
+    // 有一组数据
+    var datas = [
+        { name: 'jim1', age: 19, gender: '男' },
+        { name: 'jim2', age: 9, gender: '女' },
+        { name: 'jim3', age: 29, gender: '男' },
+        { name: 'jim4', age: 39, gender: '女' },
+        { name: 'jim5', age: 49, gender: '女' }
+    ];
+
+    // 生成一个 table 表格
+    // 只需要保证 table 中有 tr 即可, 不考虑 thead 等数据
+    parseHTML( '<table border="1" width="400">' + datas.map(function ( v ) {
+        // v 就是每一项数据, 即每一行数据
+        var rest = [];
+        for( var k in v ) {
+            // 此时 k 就是 对应的 name, age, 和 gender
+            rest.push( '<td>' + v[ k ] + '</td>' );
+        }
+        return '<tr>' + rest.join( '' ) + '</tr>';
+    }).join( '' ) + '</table>' ).forEach( function ( v ) {
+        document.body.appendChild( v );
+    });
+
+
+</script>
+</html>

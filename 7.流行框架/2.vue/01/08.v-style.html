@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<script src="vue.min.js"></script>
+
+</head>
+<body>
+	<div id="app">
+
+
+
+		<p :style=" { color: 'blue' } ">我是一个p</p>
+
+
+
+		<p :style="[ styleObj1 , styleObj2 ]">我是一个p</p>
+
+	</div>
+	<script>
+		
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				styleObj1: { color: 'red', 'font-weight': 200 },
+				styleObj2: { 'font-style': 'italic' }					
+			}
+
+
+
+		});
+
+	</script>
+</body>
+</html>

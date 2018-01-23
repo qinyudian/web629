@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+<div id="box"></div>
+
+<script type="text/javascript" src="template.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var data = {
+		title: '图书信息',
+		books: ['水浒传','三国演义','红楼梦','西游记']
+	};
+	// template的作用就是把模板和数据拼接到一块生成一个静态HTML片段，实际就是该方法的返回值
+    // 参数一：模板id
+    // 参数二：用来渲染的数据
+	var html = template( 'test',data );
+	var box = document.getElementById('box');
+	box.innerHTML = html;
+
+}	
+
+</script>
+<script type="text/html" id="test">
+<h1>{{title}}</h1>
+{{if books}}
+	{{each books as value i}}
+		<div>{{value}}</div>
+	{{/each}}
+{{/if}}
+</script>	
+</body>
+</html>

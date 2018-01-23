@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            margin-bottom: 20px;
+            border: 1px solid red;
+        }
+        p {
+            padding: 20px;
+            background-color: lightskyblue;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p>p</p>
+        <p>p</p>
+        <p>p</p>
+        <p>p</p>
+    </div>
+    <div>
+        <p>p</p>
+        <p>p</p>
+        <p>p</p>
+    </div>
+    <div>
+        <p>p</p>
+    </div>
+    <div>
+        <p>p</p>
+    </div>
+</body>
+<script src="js/Itcast.core.js"></script>
+<script src="js/Itcast.dom.js"></script>
+<script src="js/Itcast.ctor.js"></script>
+<script>
+    var push = [].push;
+
+    // 核心方法 unique
+    Itcast.extend({
+        unique: function( iObj ){
+            var arr = [],
+                iNewObj = Itcast(),
+                i;
+            for ( i = 0 ; i < iObj.length ; i++ ) {
+                if ( arr.indexOf( iObj[i] ) == -1 ) {
+                    arr.push( iObj[i] );
+                }
+            }
+
+            push.apply( iNewObj , arr );
+            return iNewObj;
+        }
+    });
+
+
+
+
+    // parent
+    Itcast.fn.extend({
+        parent : function(){
+            var  iObj = Itcast();
+            push.apply( iObj , this.map(function(v){
+                return v.parentNode;
+            }));
+            iObj = Itcast.unique(iObj);
+            return this.pushStack(iObj);
+        }
+    });
+
+
+</script>
+
+<script>
+    var obj = I('p').parent();
+
+    var arr = [1,1,2,2];
+
+    var arr1 = Itcast.unique(arr);
+
+
+</script>
+
+
+
+</html>
