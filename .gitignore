@@ -1,0 +1,10 @@
+
+/.idea
+/.git
+.git/*
+/.vs
+.vs/*
+
+/node_modules
+node_modules/
+node_modules/*
