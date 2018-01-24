@@ -6,6 +6,11 @@
       <mt-button type="danger" size="large" plain>danger</mt-button>
       <br>
       <br>
+
+      <button type="button" class="mui-btn mui-btn-royal">
+        紫色
+      </button>
+
       <router-link to="/account">用户</router-link>
       <router-link to="/goodlist">好友列表</router-link>
       <router-view></router-view>
